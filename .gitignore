@@ -1,3 +1,5 @@
 .*
-specs
 !.gitignore
+vendor/
+node_modules/
+specs

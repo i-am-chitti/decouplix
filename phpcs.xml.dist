@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<ruleset name="Headless Companion Rules">
+	<description>WordPress Coding Standards for Headless Companion plugin</description>
+
+	<!-- Target paths to scan -->
+	<file>.</file>
+
+	<!-- Exclude paths -->
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/assets/*</exclude-pattern>
+	<exclude-pattern>/tests/*</exclude-pattern>
+
+	<!-- Show progress, colors, and sniff codes -->
+	<arg value="ps"/>
+	<arg name="colors"/>
+
+	<!-- Set target PHP version -->
+	<config name="testVersion" value="7.4-"/>
+
+	<!-- Include WordPress Coding Standards -->
+	<rule ref="WordPress">
+		<!-- Disable class file name standards because we chose modern PSR-4 PascalCase filenames -->
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+		<!-- Allow short prefix "hc" (2 characters) as requested by the user -->
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.ShortPrefixPassed"/>
+	</rule>
+
+	<!-- Exclude PrefixAllGlobals for the main bootstrap file because the prefix "hc" is shorter than the WPCS minimum length -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude-pattern>headless-companion\.php</exclude-pattern>
+	</rule>
+
+	<!-- Rule to enforce our text domain -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="headless-companion"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Rule to enforce naming prefix for hooks and global definitions -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="hc"/>
+				<element value="HC"/>
+				<element value="HeadlessCompanion"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>
