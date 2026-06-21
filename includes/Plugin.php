@@ -49,6 +49,8 @@ class Plugin {
 		if ( is_admin() ) {
 			Admin::get_instance();
 		}
+
+		REST_API::get_instance();
 	}
 
 	/**
