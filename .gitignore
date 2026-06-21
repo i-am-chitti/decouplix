@@ -1,5 +1,6 @@
 .*
 !.gitignore
+!.nvmrc
 vendor/
 node_modules/
 specs

@@ -1,0 +1,13 @@
+{
+	"name": "headless-companion",
+	"version": "0.1.0",
+	"description": "React-based admin settings dashboard for Headless Companion.",
+	"private": true,
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.0.0"
+	}
+}

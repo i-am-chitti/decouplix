@@ -5,6 +5,9 @@
 	<!-- Target paths to scan -->
 	<file>.</file>
 
+	<!-- Scan only PHP files -->
+	<arg name="extensions" value="php"/>
+
 	<!-- Exclude paths -->
 	<exclude-pattern>/vendor/*</exclude-pattern>
 	<exclude-pattern>/node_modules/*</exclude-pattern>
