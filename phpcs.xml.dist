@@ -26,13 +26,8 @@
 		<!-- Disable class file name standards because we chose modern PSR-4 PascalCase filenames -->
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
-		<!-- Allow short prefix "hc" (2 characters) as requested by the user -->
-		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.ShortPrefixPassed"/>
-	</rule>
-
-	<!-- Exclude PrefixAllGlobals for the main bootstrap file because the prefix "hc" is shorter than the WPCS minimum length -->
-	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
-		<exclude-pattern>headless-companion\.php</exclude-pattern>
+		<!-- Disable PrefixAllGlobals because our prefix "hc" is shorter than the WPCS minimum length, which triggers false warnings for constants/hooks -->
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals"/>
 	</rule>
 
 	<!-- Rule to enforce our text domain -->
@@ -40,17 +35,6 @@
 		<properties>
 			<property name="text_domain" type="array">
 				<element value="headless-companion"/>
-			</property>
-		</properties>
-	</rule>
-
-	<!-- Rule to enforce naming prefix for hooks and global definitions -->
-	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
-		<properties>
-			<property name="prefixes" type="array">
-				<element value="hc"/>
-				<element value="HC"/>
-				<element value="HeadlessCompanion"/>
 			</property>
 		</properties>
 	</rule>

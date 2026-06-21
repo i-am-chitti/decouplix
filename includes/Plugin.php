@@ -51,6 +51,7 @@ class Plugin {
 		}
 
 		REST_API::get_instance();
+		Webhook::get_instance();
 	}
 
 	/**

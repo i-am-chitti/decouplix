@@ -194,3 +194,48 @@ if ( ! class_exists( 'WP_Error' ) ) {
 	}
 }
 
+if ( ! function_exists( 'do_action' ) ) {
+	function do_action( $tag, ...$arg ) {
+		global $hc_fired_actions;
+		if ( ! is_array( $hc_fired_actions ) ) {
+			$hc_fired_actions = array();
+		}
+		$hc_fired_actions[] = array(
+			'tag'  => $tag,
+			'args' => $arg,
+		);
+	}
+}
+
+if ( ! function_exists( 'apply_filters' ) ) {
+	function apply_filters( $tag, $value, ...$arg ) {
+		return $value;
+	}
+}
+
+if ( ! function_exists( 'get_post_type_object' ) ) {
+	function get_post_type_object( $post_type ) {
+		global $hc_mock_post_type_public;
+		$obj = new \stdClass();
+		$obj->public = isset( $hc_mock_post_type_public ) ? $hc_mock_post_type_public : true;
+		return $obj;
+	}
+}
+
+if ( ! function_exists( 'get_permalink' ) ) {
+	function get_permalink( $post_id ) {
+		return 'https://example.com/?p=' . $post_id;
+	}
+}
+
+if ( ! class_exists( 'WP_Post' ) ) {
+	class WP_Post {
+		public $ID = 0;
+		public $post_type = 'post';
+		public $post_title = '';
+		public $post_name = '';
+		public $post_modified_gmt = '';
+	}
+}
+
+
