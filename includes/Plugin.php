@@ -46,7 +46,9 @@ class Plugin {
 	 * Initialize plugin components.
 	 */
 	private function init() {
-		// Hook registrations and loader logic will go here.
+		if ( is_admin() ) {
+			Admin::get_instance();
+		}
 	}
 
 	/**

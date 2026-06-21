@@ -23,9 +23,19 @@ if ( file_exists( HC_PLUGIN_DIR . 'vendor/autoload.php' ) ) {
 require_once HC_PLUGIN_DIR . 'includes/Autoloader.php';
 \HeadlessCompanion\Autoloader::register();
 
-// Minimal mocks for basic unit tests.
 if ( ! function_exists( 'add_action' ) ) {
-	function add_action( $hook, $callback, $priority = 10, $accepted_args = 1 ) {}
+	function add_action( $hook, $callback, $priority = 10, $accepted_args = 1 ) {
+		global $hc_registered_actions;
+		if ( ! is_array( $hc_registered_actions ) ) {
+			$hc_registered_actions = array();
+		}
+		$hc_registered_actions[] = array(
+			'hook'          => $hook,
+			'callback'      => $callback,
+			'priority'      => $priority,
+			'accepted_args' => $accepted_args,
+		);
+	}
 }
 if ( ! function_exists( 'add_filter' ) ) {
 	function add_filter( $hook, $callback, $priority = 10, $accepted_args = 1 ) {}
