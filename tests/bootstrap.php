@@ -238,4 +238,60 @@ if ( ! class_exists( 'WP_Post' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wp_json_encode' ) ) {
+	function wp_json_encode( $data ) {
+		return json_encode( $data );
+	}
+}
+
+if ( ! function_exists( 'wp_remote_post' ) ) {
+	function wp_remote_post( $url, $args = array() ) {
+		global $hc_mock_remote_post_result;
+		return isset( $hc_mock_remote_post_result ) ? $hc_mock_remote_post_result : array( 'response' => array( 'code' => 200 ) );
+	}
+}
+
+if ( ! function_exists( 'is_wp_error' ) ) {
+	function is_wp_error( $thing ) {
+		return $thing instanceof WP_Error;
+	}
+}
+
+if ( ! function_exists( 'wp_remote_retrieve_response_code' ) ) {
+	function wp_remote_retrieve_response_code( $response ) {
+		return isset( $response['response']['code'] ) ? $response['response']['code'] : 200;
+	}
+}
+
+if ( ! function_exists( 'wp_schedule_single_event' ) ) {
+	function wp_schedule_single_event( $timestamp, $hook, $args = array(), $wp_error = false ) {
+		global $hc_scheduled_events;
+		if ( ! is_array( $hc_scheduled_events ) ) {
+			$hc_scheduled_events = array();
+		}
+		$hc_scheduled_events[] = array(
+			'timestamp' => $timestamp,
+			'hook'      => $hook,
+			'args'      => $args,
+		);
+		return true;
+	}
+}
+
+if ( ! function_exists( 'as_enqueue_async_action' ) ) {
+	function as_enqueue_async_action( $hook, $args = array(), $group = '' ) {
+		global $hc_action_scheduler_events;
+		if ( ! is_array( $hc_action_scheduler_events ) ) {
+			$hc_action_scheduler_events = array();
+		}
+		$hc_action_scheduler_events[] = array(
+			'hook'  => $hook,
+			'args'  => $args,
+			'group' => $group,
+		);
+		return 1;
+	}
+}
+
+
 
