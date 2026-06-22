@@ -293,5 +293,37 @@ if ( ! function_exists( 'as_enqueue_async_action' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wp_make_link_relative' ) ) {
+	function wp_make_link_relative( $url ) {
+		$parts    = parse_url( $url );
+		$path     = isset( $parts['path'] ) ? $parts['path'] : '';
+		$query    = isset( $parts['query'] ) ? '?' . $parts['query'] : '';
+		$fragment = isset( $parts['fragment'] ) ? '#' . $parts['fragment'] : '';
+		return $path . $query . $fragment;
+	}
+}
+
+if ( ! function_exists( 'get_object_taxonomies' ) ) {
+	function get_object_taxonomies( $post_type ) {
+		global $hc_mock_taxonomies;
+		return isset( $hc_mock_taxonomies ) ? $hc_mock_taxonomies : array( 'category', 'post_tag' );
+	}
+}
+
+if ( ! function_exists( 'get_the_terms' ) ) {
+	function get_the_terms( $post_id, $taxonomy ) {
+		global $hc_mock_terms;
+		return isset( $hc_mock_terms ) ? $hc_mock_terms : array();
+	}
+}
+
+if ( ! function_exists( 'get_term_link' ) ) {
+	function get_term_link( $term ) {
+		$slug = is_object( $term ) ? $term->slug : $term;
+		return 'https://example.com/tag/' . $slug;
+	}
+}
+
+
 
 

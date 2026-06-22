@@ -53,6 +53,7 @@ class Plugin {
 		REST_API::get_instance();
 		Webhook::get_instance();
 		Queue::get_instance();
+		Cache::get_instance();
 	}
 
 	/**
