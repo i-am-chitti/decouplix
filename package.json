@@ -5,7 +5,13 @@
 	"private": true,
 	"scripts": {
 		"build": "wp-scripts build",
-		"dev": "wp-scripts start"
+		"dev": "wp-scripts start",
+		"watch": "wp-scripts start",
+		"lint:php": "composer lint",
+		"lint:js": "wp-scripts lint-js src",
+		"lint": "npm run lint:js && npm run lint:php",
+		"test:php": "composer test",
+		"test": "npm run test:php"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.0.0"

@@ -5,7 +5,7 @@ import {
 	TextareaControl,
 	Button,
 	Notice,
-	Spinner
+	Spinner,
 } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 
@@ -86,28 +86,41 @@ const App = () => {
 	 * Regenerates a secure 32-character random hex webhook secret key.
 	 */
 	const generateSecret = () => {
-		const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+		const chars =
+			'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 		let secret = '';
 		for ( let i = 0; i < 32; i++ ) {
-			secret += chars.charAt( Math.floor( Math.random() * chars.length ) );
+			secret += chars.charAt(
+				Math.floor( Math.random() * chars.length )
+			);
 		}
 		setSettings( { ...settings, webhook_secret: secret } );
 	};
 
 	if ( isLoading ) {
 		return (
-			<div className="hc-loading-container" style={ { padding: '40px 0', textAlign: 'left' } }>
+			<div
+				className="hc-loading-container"
+				style={ { padding: '40px 0', textAlign: 'left' } }
+			>
 				<Spinner />
-				<span style={ { marginLeft: '10px', verticalAlign: 'middle' } }>Loading settings...</span>
+				<span style={ { marginLeft: '10px', verticalAlign: 'middle' } }>
+					Loading settings...
+				</span>
 			</div>
 		);
 	}
 
 	return (
-		<div className="hc-settings-wrap" style={ { maxWidth: '800px', margin: '20px 0' } }>
+		<div
+			className="hc-settings-wrap"
+			style={ { maxWidth: '800px', margin: '20px 0' } }
+		>
 			<h2>Headless Companion &amp; Smart Purge Settings</h2>
 			<p className="description" style={ { marginBottom: '20px' } }>
-				Configure your decoupled frontend configurations below to enable automatic caching purges, preview hooks, and secure webhook triggering.
+				Configure your decoupled frontend configurations below to enable
+				automatic caching purges, preview hooks, and secure webhook
+				triggering.
 			</p>
 
 			{ notice && (
@@ -127,14 +140,22 @@ const App = () => {
 							label="Front-end URL"
 							help="The base URL of your decoupled frontend site, e.g. https://my-site.com. Used for frontend preview redirection and relative URL mapping."
 							value={ settings.frontend_url }
-							onChange={ ( val ) => setSettings( { ...settings, frontend_url: val } ) }
+							onChange={ ( val ) =>
+								setSettings( {
+									...settings,
+									frontend_url: val,
+								} )
+							}
 							type="url"
 							placeholder="https://my-site.com"
 						/>
 					</div>
 
 					<div className="hc-form-row">
-						<label className="components-base-control__label" htmlFor="hc-webhook-secret">
+						<label
+							className="components-base-control__label"
+							htmlFor="hc-webhook-secret"
+						>
 							Webhook Secret
 						</label>
 						<div className="hc-webhook-row-container">
@@ -142,20 +163,24 @@ const App = () => {
 								<TextControl
 									id="hc-webhook-secret"
 									value={ settings.webhook_secret }
-									onChange={ ( val ) => setSettings( { ...settings, webhook_secret: val } ) }
+									onChange={ ( val ) =>
+										setSettings( {
+											...settings,
+											webhook_secret: val,
+										} )
+									}
 									hideLabelFromVision
 									label="Webhook Secret"
 								/>
 							</div>
-							<Button
-								isSecondary
-								onClick={ generateSecret }
-							>
+							<Button isSecondary onClick={ generateSecret }>
 								Regenerate
 							</Button>
 						</div>
 						<p className="components-base-control__help">
-							Secret key used to securely sign outgoing webhook payloads sent to the frontend. The frontend can verify authenticity via HMAC signature check.
+							Secret key used to securely sign outgoing webhook
+							payloads sent to the frontend. The frontend can
+							verify authenticity via HMAC signature check.
 						</p>
 					</div>
 
@@ -164,7 +189,12 @@ const App = () => {
 							label="Cache Revalidation Endpoints"
 							help="Enter your frontend cache purge / revalidation endpoints (one per line). These will receive POST requests containing modified paths."
 							value={ settings.cache_endpoints }
-							onChange={ ( val ) => setSettings( { ...settings, cache_endpoints: val } ) }
+							onChange={ ( val ) =>
+								setSettings( {
+									...settings,
+									cache_endpoints: val,
+								} )
+							}
 							placeholder="https://my-site.com/api/revalidate"
 							rows={ 4 }
 						/>
@@ -172,11 +202,7 @@ const App = () => {
 				</PanelBody>
 
 				<div style={ { marginTop: '20px' } }>
-					<Button
-						isPrimary
-						type="submit"
-						disabled={ isSaving }
-					>
+					<Button isPrimary type="submit" disabled={ isSaving }>
 						{ isSaving ? 'Saving...' : 'Save Settings' }
 					</Button>
 				</div>
