@@ -29,6 +29,11 @@ class WebhookTest extends TestCase {
 		$hc_registered_actions    = array();
 		$hc_fired_actions         = array();
 		$hc_mock_post_type_public = true;
+
+		// Reset singleton instance for Webhook.
+		$ref  = new \ReflectionClass( Webhook::class );
+		$prop = $ref->getProperty( 'instance' );
+		$prop->setValue( null, null );
 	}
 
 	/**

@@ -353,6 +353,58 @@ if ( ! function_exists( 'add_query_arg' ) ) {
 	}
 }
 
+if ( ! function_exists( 'get_users' ) ) {
+	function get_users( $args = array() ) {
+		global $hc_mock_users;
+		if ( isset( $hc_mock_users ) ) {
+			return $hc_mock_users;
+		}
+		$admin     = new \stdClass();
+		$admin->ID = 1;
+		return array( $admin );
+	}
+}
+
+if ( ! function_exists( 'get_post' ) ) {
+	function get_post( $post_id ) {
+		global $hc_mock_posts;
+		if ( is_array( $hc_mock_posts ) && isset( $hc_mock_posts[ $post_id ] ) ) {
+			return $hc_mock_posts[ $post_id ];
+		}
+		$post     = new WP_Post();
+		$post->ID = $post_id;
+		return $post;
+	}
+}
+
+if ( ! function_exists( 'register_graphql_field' ) ) {
+	function register_graphql_field( $type_name, $field_name, $config = array() ) {
+		global $hc_registered_graphql_fields;
+		if ( ! is_array( $hc_registered_graphql_fields ) ) {
+			$hc_registered_graphql_fields = array();
+		}
+		$hc_registered_graphql_fields[] = array(
+			'type_name'  => $type_name,
+			'field_name' => $field_name,
+			'config'     => $config,
+		);
+	}
+}
+
+if ( ! function_exists( 'sanitize_text_field' ) ) {
+	function sanitize_text_field( $str ) {
+		return trim( strip_tags( $str ) );
+	}
+}
+
+if ( ! function_exists( 'wp_unslash' ) ) {
+	function wp_unslash( $value ) {
+		return is_string( $value ) ? stripslashes( $value ) : $value;
+	}
+}
+
+
+
 
 
 

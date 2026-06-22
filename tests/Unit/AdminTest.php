@@ -26,6 +26,11 @@ class AdminTest extends TestCase {
 		parent::setUp();
 		global $hc_registered_actions;
 		$hc_registered_actions = array();
+
+		// Reset singleton instance for Admin.
+		$ref  = new \ReflectionClass( Admin::class );
+		$prop = $ref->getProperty( 'instance' );
+		$prop->setValue( null, null );
 	}
 
 	/**

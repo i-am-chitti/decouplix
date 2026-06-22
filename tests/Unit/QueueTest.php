@@ -31,6 +31,11 @@ class QueueTest extends TestCase {
 		$hc_scheduled_events        = array();
 		$hc_mock_options            = array();
 		$hc_mock_remote_post_result = null;
+
+		// Reset singleton instance for Queue.
+		$ref  = new \ReflectionClass( Queue::class );
+		$prop = $ref->getProperty( 'instance' );
+		$prop->setValue( null, null );
 	}
 
 	/**

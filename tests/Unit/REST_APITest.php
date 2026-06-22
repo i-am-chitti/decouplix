@@ -31,6 +31,11 @@ class REST_APITest extends TestCase {
 		$hc_registered_routes     = array();
 		$hc_current_user_can_result = true;
 		$hc_mock_options          = array();
+
+		// Reset singleton instance for REST_API.
+		$ref  = new \ReflectionClass( REST_API::class );
+		$prop = $ref->getProperty( 'instance' );
+		$prop->setValue( null, null );
 	}
 
 	/**

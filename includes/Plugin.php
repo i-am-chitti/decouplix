@@ -55,6 +55,7 @@ class Plugin {
 		Queue::get_instance();
 		Cache::get_instance();
 		Preview::get_instance();
+		GraphQL::get_instance();
 	}
 
 	/**
