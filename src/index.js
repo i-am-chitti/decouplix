@@ -15,6 +15,8 @@ if ( window.hcSettings ) {
 	apiFetch.use( apiFetch.createRootURLMiddleware( window.hcSettings.root ) );
 }
 
+import './admin.css';
+
 /**
  * Main Settings application component.
  *
@@ -120,41 +122,53 @@ const App = () => {
 
 			<form onSubmit={ handleSave } style={ { marginTop: '20px' } }>
 				<PanelBody title="General Configuration" initialOpen={ true }>
-					<TextControl
-						label="Front-end URL"
-						help="The base URL of your decoupled frontend site, e.g. https://my-site.com. Used for frontend preview redirection and relative URL mapping."
-						value={ settings.frontend_url }
-						onChange={ ( val ) => setSettings( { ...settings, frontend_url: val } ) }
-						type="url"
-						placeholder="https://my-site.com"
-					/>
-
-					<div style={ { display: 'flex', alignItems: 'flex-end', gap: '10px', marginBottom: '16px' } }>
-						<div style={ { flexGrow: 1 } }>
-							<TextControl
-								label="Webhook Secret"
-								help="Secret key used to securely sign outgoing webhook payloads sent to the frontend. The frontend can verify authenticity via HMAC signature check."
-								value={ settings.webhook_secret }
-								onChange={ ( val ) => setSettings( { ...settings, webhook_secret: val } ) }
-							/>
-						</div>
-						<Button
-							isSecondary
-							onClick={ generateSecret }
-							style={ { marginBottom: '16px', height: '30px' } }
-						>
-							Regenerate
-						</Button>
+					<div className="hc-form-row">
+						<TextControl
+							label="Front-end URL"
+							help="The base URL of your decoupled frontend site, e.g. https://my-site.com. Used for frontend preview redirection and relative URL mapping."
+							value={ settings.frontend_url }
+							onChange={ ( val ) => setSettings( { ...settings, frontend_url: val } ) }
+							type="url"
+							placeholder="https://my-site.com"
+						/>
 					</div>
 
-					<TextareaControl
-						label="Cache Revalidation Endpoints"
-						help="Enter your frontend cache purge / revalidation endpoints (one per line). These will receive POST requests containing modified paths."
-						value={ settings.cache_endpoints }
-						onChange={ ( val ) => setSettings( { ...settings, cache_endpoints: val } ) }
-						placeholder="https://my-site.com/api/revalidate"
-						rows={ 4 }
-					/>
+					<div className="hc-form-row">
+						<label className="components-base-control__label" htmlFor="hc-webhook-secret">
+							Webhook Secret
+						</label>
+						<div className="hc-webhook-row-container">
+							<div className="hc-webhook-input-wrapper">
+								<TextControl
+									id="hc-webhook-secret"
+									value={ settings.webhook_secret }
+									onChange={ ( val ) => setSettings( { ...settings, webhook_secret: val } ) }
+									hideLabelFromVision
+									label="Webhook Secret"
+								/>
+							</div>
+							<Button
+								isSecondary
+								onClick={ generateSecret }
+							>
+								Regenerate
+							</Button>
+						</div>
+						<p className="components-base-control__help">
+							Secret key used to securely sign outgoing webhook payloads sent to the frontend. The frontend can verify authenticity via HMAC signature check.
+						</p>
+					</div>
+
+					<div className="hc-form-row">
+						<TextareaControl
+							label="Cache Revalidation Endpoints"
+							help="Enter your frontend cache purge / revalidation endpoints (one per line). These will receive POST requests containing modified paths."
+							value={ settings.cache_endpoints }
+							onChange={ ( val ) => setSettings( { ...settings, cache_endpoints: val } ) }
+							placeholder="https://my-site.com/api/revalidate"
+							rows={ 4 }
+						/>
+					</div>
 				</PanelBody>
 
 				<div style={ { marginTop: '20px' } }>
