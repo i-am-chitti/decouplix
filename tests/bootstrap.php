@@ -244,6 +244,7 @@ if ( ! class_exists( 'WP_Post' ) ) {
 	class WP_Post {
 		public $ID = 0;
 		public $post_type = 'post';
+		public $post_status = 'publish';
 		public $post_title = '';
 		public $post_name = '';
 		public $post_modified_gmt = '';
@@ -371,9 +372,7 @@ if ( ! function_exists( 'get_post' ) ) {
 		if ( is_array( $hc_mock_posts ) && isset( $hc_mock_posts[ $post_id ] ) ) {
 			return $hc_mock_posts[ $post_id ];
 		}
-		$post     = new WP_Post();
-		$post->ID = $post_id;
-		return $post;
+		return null;
 	}
 }
 
@@ -402,6 +401,41 @@ if ( ! function_exists( 'wp_unslash' ) ) {
 		return is_string( $value ) ? stripslashes( $value ) : $value;
 	}
 }
+
+if ( ! defined( 'WP_CLI' ) ) {
+	define( 'WP_CLI', true );
+}
+
+if ( ! class_exists( 'WP_CLI' ) ) {
+	class WP_CLI {
+		public static $commands  = array();
+		public static $lines     = array();
+		public static $errors    = array();
+		public static $successes = array();
+
+		public static function add_command( $name, $class ) {
+			self::$commands[ $name ] = $class;
+		}
+
+		public static function line( $str ) {
+			self::$lines[] = $str;
+		}
+
+		public static function log( $str ) {
+			self::$lines[] = $str;
+		}
+
+		public static function error( $str ) {
+			self::$errors[] = $str;
+			throw new \Exception( $str );
+		}
+
+		public static function success( $str ) {
+			self::$successes[] = $str;
+		}
+	}
+}
+
 
 
 
