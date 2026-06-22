@@ -38,7 +38,19 @@ if ( ! function_exists( 'add_action' ) ) {
 	}
 }
 if ( ! function_exists( 'add_filter' ) ) {
-	function add_filter( $hook, $callback, $priority = 10, $accepted_args = 1 ) {}
+	function add_filter( $hook, $callback, $priority = 10, $accepted_args = 1 ) {
+		global $hc_registered_actions;
+		if ( ! is_array( $hc_registered_actions ) ) {
+			$hc_registered_actions = array();
+		}
+		$hc_registered_actions[] = array(
+			'hook'          => $hook,
+			'callback'      => $callback,
+			'priority'      => $priority,
+			'accepted_args' => $accepted_args,
+		);
+		return true;
+	}
 }
 if ( ! function_exists( 'register_activation_hook' ) ) {
 	function register_activation_hook( $file, $callback ) {}
@@ -323,6 +335,24 @@ if ( ! function_exists( 'get_term_link' ) ) {
 		return 'https://example.com/tag/' . $slug;
 	}
 }
+
+if ( ! function_exists( 'add_query_arg' ) ) {
+	function add_query_arg( ...$args ) {
+		if ( is_array( $args[0] ) ) {
+			$query_args = $args[0];
+			$url        = isset( $args[1] ) ? $args[1] : '';
+		} else {
+			$query_args = array( $args[0] => $args[1] );
+			$url        = isset( $args[2] ) ? $args[2] : '';
+		}
+
+		$query_string = http_build_query( $query_args );
+		$separator    = strpos( $url, '?' ) === false ? '?' : '&';
+
+		return $url . $separator . $query_string;
+	}
+}
+
 
 
 

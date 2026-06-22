@@ -54,6 +54,7 @@ class Plugin {
 		Webhook::get_instance();
 		Queue::get_instance();
 		Cache::get_instance();
+		Preview::get_instance();
 	}
 
 	/**
