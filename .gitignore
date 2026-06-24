@@ -1,5 +1,6 @@
 .*
 !.gitignore
+!.gitkeep
 !.nvmrc
 !.github/
 !.wordpress-org/
