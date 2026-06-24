@@ -70,7 +70,7 @@ class Queue {
 	 */
 	public function deliver_webhook( $payload ) {
 		$settings = get_option( 'hc_settings', array() );
-		$url      = isset( $settings['frontend_url'] ) ? $settings['frontend_url'] : '';
+		$url      = isset( $settings['webhook_url'] ) ? $settings['webhook_url'] : '';
 		$secret   = isset( $settings['webhook_secret'] ) ? $settings['webhook_secret'] : '';
 
 		if ( empty( $url ) ) {

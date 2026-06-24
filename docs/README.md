@@ -52,8 +52,9 @@ When you update or publish posts, pages, or taxonomy terms, the plugin detects t
 *   **Smart Path Mapping:**
     *   **Post Updates:** Purges the post's direct relative path (e.g., `/blog/my-post`) and the homepage (`/`).
     *   **Term/Category Updates:** Purges all corresponding category/term archive pages.
-*   **HMAC Payload Signing:** Each webhook includes an `x-hc-signature` header. Your frontend can verify the payload's integrity using the shared Webhook Secret:
+*   **HMAC Payload Signing:** Each webhook includes an `X-Hub-Signature-256` header (prefixed with `sha256=`). Your frontend can verify the payload's integrity using the shared Webhook Secret:
     ```javascript
+    const signature = request.headers.get('x-hub-signature-256').replace('sha256=', '');
     const computedSignature = crypto
         .createHmac('sha256', secret)
         .update(rawBody)

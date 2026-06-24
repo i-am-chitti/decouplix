@@ -72,6 +72,7 @@ class Plugin {
 				'hc_settings',
 				array(
 					'frontend_url'    => '',
+					'webhook_url'     => '',
 					'webhook_secret'  => wp_generate_password( 32, false ),
 					'cache_endpoints' => '',
 				)

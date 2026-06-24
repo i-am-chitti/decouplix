@@ -61,14 +61,16 @@ class CLI {
 	 * @when after_wp_load
 	 */
 	public function status( $args, $assoc_args ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
-		$settings = get_option( 'hc_settings', array() );
-		$url      = isset( $settings['frontend_url'] ) ? $settings['frontend_url'] : '';
-		$secret   = isset( $settings['webhook_secret'] ) ? $settings['webhook_secret'] : '';
-		$purge    = isset( $settings['cache_endpoints'] ) ? $settings['cache_endpoints'] : '';
+		$settings    = get_option( 'hc_settings', array() );
+		$url         = isset( $settings['frontend_url'] ) ? $settings['frontend_url'] : '';
+		$webhook_url = isset( $settings['webhook_url'] ) ? $settings['webhook_url'] : '';
+		$secret      = isset( $settings['webhook_secret'] ) ? $settings['webhook_secret'] : '';
+		$purge       = isset( $settings['cache_endpoints'] ) ? $settings['cache_endpoints'] : '';
 
 		WP_CLI::line( 'Headless Companion Configuration Status:' );
 		WP_CLI::line( '----------------------------------------' );
 		WP_CLI::line( sprintf( 'Frontend URL:   %s', ! empty( $url ) ? $url : 'Not Configured' ) );
+		WP_CLI::line( sprintf( 'Webhook URL:    %s', ! empty( $webhook_url ) ? $webhook_url : 'Not Configured' ) );
 		WP_CLI::line( sprintf( 'Webhook Secret: %s', ! empty( $secret ) ? 'Configured (Secret Hidden)' : 'Not Configured' ) );
 
 		if ( empty( $purge ) ) {

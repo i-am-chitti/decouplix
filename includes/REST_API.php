@@ -85,6 +85,11 @@ class REST_API {
 							'sanitize_callback' => 'esc_url_raw',
 							'validate_callback' => array( $this, 'validate_url' ),
 						),
+						'webhook_url'     => array(
+							'required'          => false,
+							'sanitize_callback' => 'esc_url_raw',
+							'validate_callback' => array( $this, 'validate_url' ),
+						),
 						'webhook_secret'  => array(
 							'required'          => false,
 							'sanitize_callback' => 'sanitize_text_field',
@@ -143,6 +148,7 @@ class REST_API {
 
 		$defaults = array(
 			'frontend_url'    => '',
+			'webhook_url'     => '',
 			'webhook_secret'  => '',
 			'cache_endpoints' => '',
 		);
@@ -163,6 +169,9 @@ class REST_API {
 
 		if ( $request->has_param( 'frontend_url' ) ) {
 			$settings['frontend_url'] = $request->get_param( 'frontend_url' );
+		}
+		if ( $request->has_param( 'webhook_url' ) ) {
+			$settings['webhook_url'] = $request->get_param( 'webhook_url' );
 		}
 		if ( $request->has_param( 'webhook_secret' ) ) {
 			$settings['webhook_secret'] = $request->get_param( 'webhook_secret' );

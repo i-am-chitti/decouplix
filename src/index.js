@@ -25,6 +25,7 @@ import './admin.css';
 const App = () => {
 	const [ settings, setSettings ] = useState( {
 		frontend_url: '',
+		webhook_url: '',
 		webhook_secret: '',
 		cache_endpoints: '',
 	} );
@@ -148,6 +149,22 @@ const App = () => {
 							}
 							type="url"
 							placeholder="https://my-site.com"
+						/>
+					</div>
+
+					<div className="hc-form-row">
+						<TextControl
+							label="Webhook URL"
+							help="The custom URL where event webhooks should be sent, e.g., a Vercel Deploy Hook, Zapier, or a custom Next.js webhook path. Leave empty to disable."
+							value={ settings.webhook_url }
+							onChange={ ( val ) =>
+								setSettings( {
+									...settings,
+									webhook_url: val,
+								} )
+							}
+							type="url"
+							placeholder="https://api.vercel.com/v1/integrations/deploy/..."
 						/>
 					</div>
 

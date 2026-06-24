@@ -106,7 +106,8 @@ class QueueTest extends TestCase {
 
 		global $hc_mock_options;
 		$hc_mock_options['hc_settings'] = array(
-			'frontend_url'   => 'https://frontend-api.com/webhook',
+			'frontend_url'   => 'https://frontend-api.com',
+			'webhook_url'    => 'https://frontend-api.com/webhook',
 			'webhook_secret' => 'mysecretkey',
 		);
 
@@ -131,7 +132,8 @@ class QueueTest extends TestCase {
 
 		global $hc_mock_options;
 		$hc_mock_options['hc_settings'] = array(
-			'frontend_url'   => '',
+			'frontend_url'   => 'https://frontend-api.com',
+			'webhook_url'    => '',
 			'webhook_secret' => 'mysecretkey',
 		);
 
@@ -151,7 +153,8 @@ class QueueTest extends TestCase {
 
 		global $hc_mock_options, $hc_mock_remote_post_result;
 		$hc_mock_options['hc_settings'] = array(
-			'frontend_url'   => 'https://frontend-api.com/webhook',
+			'frontend_url'   => 'https://frontend-api.com',
+			'webhook_url'    => 'https://frontend-api.com/webhook',
 			'webhook_secret' => 'mysecretkey',
 		);
 
