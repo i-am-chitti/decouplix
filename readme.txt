@@ -32,3 +32,27 @@ An enterprise-ready WordPress plugin that optimizes the content editing experien
 
 = 0.1.0 =
 * Initial release. Bootstrap plugin foundation and autoloader.
+
+== Development & Contribution ==
+
+We welcome contributions to Headless Companion! Follow these instructions to set up the plugin for local development:
+
+=== Prerequisites ===
+* Node.js (version 22.x recommended)
+* Composer (v2)
+* PHP 7.4 or later
+
+=== Local Setup ===
+1. Clone the repository into your WordPress plugins folder (`/wp-content/plugins/`).
+2. Run `npm install` to install local JavaScript build tools and dependencies.
+3. Run `composer install` to install PHP development tools (PHPUnit, PHPCS).
+
+=== Build Scripts ===
+* `npm run dev` or `npm run watch`: Starts the webpack watcher for React changes, compiling in real-time.
+* `npm run build`: Compiles production-optimized and minified JavaScript/CSS assets.
+
+=== Testing & Linting ===
+* `npm run lint`: Runs both JS and PHPCS linters to verify syntax and standard compliance.
+* `npm run lint:js`: Runs WordPress ESLint/Prettier checks on JavaScript code.
+* `npm run lint:php`: Runs PHP CodeSniffer standard checks.
+* `npm run test`: Runs the PHPUnit unit test suite.
