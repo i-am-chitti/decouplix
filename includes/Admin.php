@@ -86,15 +86,15 @@ class Admin {
 		}
 
 		// Path to compiled scripts.
-		$script_path = HC_PLUGIN_DIR . 'assets/admin.js';
-		$style_path  = HC_PLUGIN_DIR . 'assets/admin.css';
+		$script_path = HC_PLUGIN_DIR . 'build/admin.js';
+		$style_path  = HC_PLUGIN_DIR . 'build/admin.css';
 
 		// Register and enqueue JS/CSS if they exist.
-		$js_url  = file_exists( $script_path ) ? HC_PLUGIN_URL . 'assets/admin.js' : '';
-		$css_url = file_exists( $style_path ) ? HC_PLUGIN_URL . 'assets/admin.css' : '';
+		$js_url  = file_exists( $script_path ) ? HC_PLUGIN_URL . 'build/admin.js' : '';
+		$css_url = file_exists( $style_path ) ? HC_PLUGIN_URL . 'build/admin.css' : '';
 
 		if ( ! empty( $js_url ) ) {
-			$asset_file   = HC_PLUGIN_DIR . 'assets/admin.asset.php';
+			$asset_file   = HC_PLUGIN_DIR . 'build/admin.asset.php';
 			$dependencies = array( 'wp-element', 'wp-components', 'wp-api-fetch', 'wp-i18n' );
 			$version      = HC_VERSION;
 

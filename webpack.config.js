@@ -8,7 +8,7 @@ module.exports = {
 	},
 	output: {
 		...defaultConfig.output,
-		path: path.resolve( process.cwd(), 'assets' ),
+		path: path.resolve( process.cwd(), 'build' ),
 		filename: '[name].js',
 	},
 };
