@@ -16,9 +16,10 @@ Welcome to the documentation for the **Headless Companion & Smart Purge** WordPr
 
 The React-based settings page allows you to connect WordPress with your decoupled frontend. Go to **Settings > Headless Companion** in the WordPress admin panel to configure the following settings:
 
-*   **Front-end URL:** The root domain of your decoupled site (e.g., `https://my-decoupled-site.com`). Used for preview redirects and path mapping.
+*   **Front-end URL:** The root domain of your decoupled site (e.g., `https://my-decoupled-site.com`). Used for preview redirects.
+*   **Webhook URL:** The destination URL for outgoing transition event payloads (e.g., a Vercel Deploy Hook, Zapier, or a custom Next.js endpoint), triggered on post creation/updates.
 *   **Webhook Secret:** A unique cryptographic key used to generate HMAC-SHA256 signatures for outgoing webhooks. Click the **Regenerate** button to instantly generate a secure, 32-character random key.
-*   **Cache Revalidation Endpoints:** The URLs on your frontend that will receive POST requests containing modified paths (e.g., `https://my-decoupled-site.com/api/revalidate`), one per line.
+*   **Cache Revalidation Endpoints:** The URLs on your frontend that will receive POST requests containing relative modified paths to purge (one per line).
 
 ![Headless Companion Settings Dashboard](images/settings.png)
 
