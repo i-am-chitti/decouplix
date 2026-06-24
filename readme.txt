@@ -67,3 +67,10 @@ We welcome contributions to Headless Companion! Follow these instructions to set
 * `npm run lint:js`: Runs WordPress ESLint/Prettier checks on JavaScript code.
 * `npm run lint:php`: Runs PHP CodeSniffer standard checks.
 * `npm run test`: Runs the PHPUnit unit test suite.
+
+== Screenshots ==
+
+1. React-powered Headless Companion settings dashboard with clean, horizontal settings alignment.
+2. Setting configuration details for Webhook URL, Webhook Secret, and Cache Purge Endpoints.
+3. Secure Live Draft Preview routing workflow from the Gutenberg editor.
+4. Custom WP-CLI `wp headless-companion` command suite for advanced administration.
