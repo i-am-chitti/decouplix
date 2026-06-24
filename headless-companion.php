@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Headless Companion & Smart Purge
+ * Plugin Name:       Headless Companion
  * Description:       Optimize the content editing experience for headless (decoupled) sites. Handles secure previewing, webhook management, automated CDN cache invalidation, and custom WP-CLI tools.
  * Version:           0.1.0
  * Author:            Deepak Kumar

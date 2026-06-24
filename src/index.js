@@ -117,7 +117,7 @@ const App = () => {
 			className="hc-settings-wrap"
 			style={ { maxWidth: '800px', margin: '20px 0' } }
 		>
-			<h2>Headless Companion &amp; Smart Purge Settings</h2>
+			<h2>Headless Companion Settings</h2>
 			<p className="description" style={ { marginBottom: '20px' } }>
 				Configure your decoupled frontend configurations below to enable
 				automatic caching purges, preview hooks, and secure webhook

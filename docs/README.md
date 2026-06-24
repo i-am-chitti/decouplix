@@ -1,6 +1,6 @@
-# 📖 Headless Companion & Smart Purge Documentation
+# 📖 Headless Companion Documentation
 
-Welcome to the documentation for the **Headless Companion & Smart Purge** WordPress plugin. This plugin optimizes the content editing experience for headless (decoupled) websites by offering secure previews, automated webhook-based cache invalidation, and advanced CLI tools.
+Welcome to the documentation for the **Headless Companion** WordPress plugin. This plugin optimizes the content editing experience for headless (decoupled) websites by offering secure previews, automated webhook-based cache invalidation, and advanced CLI tools.
 
 ---
 
