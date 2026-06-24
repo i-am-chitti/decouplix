@@ -2,6 +2,7 @@
 !.gitignore
 !.nvmrc
 !.github/
+!.wordpress-org/
 vendor/
 node_modules/
 specs

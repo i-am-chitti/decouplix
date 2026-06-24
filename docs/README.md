@@ -21,7 +21,7 @@ The React-based settings page allows you to connect WordPress with your decouple
 *   **Webhook Secret:** A unique cryptographic key used to generate HMAC-SHA256 signatures for outgoing webhooks. Click the **Regenerate** button to instantly generate a secure, 32-character random key.
 *   **Cache Revalidation Endpoints:** The URLs on your frontend that will receive POST requests containing relative modified paths to purge (one per line).
 
-![Headless Companion Settings Dashboard](images/settings.png)
+![Headless Companion Settings Dashboard](../.wordpress-org/screenshot-1.png)
 
 ---
 
@@ -38,9 +38,9 @@ When content editors click the **Preview** button in Gutenberg, they need to see
 3. Your frontend makes a secure callback request to the WordPress REST API or WPGraphQL endpoint passing the token in the `Authorization: Bearer [PREVIEW_TOKEN]` header.
 4. WordPress authenticates the request and returns the post draft data.
 
-![Gutenberg Editor Preview Link](images/preview-url.png)
+![Gutenberg Editor Preview Link](../.wordpress-org/screenshot-2.png)
 
-![Live Draft Previews in Action on Decoupled Frontend](images/live-preview.png)
+![Live Draft Previews in Action on Decoupled Frontend](../.wordpress-org/screenshot-3.png)
 
 ---
 
@@ -76,4 +76,4 @@ For developers and system administrators, the plugin registers custom commands u
 *   **`wp headless-companion purge <path>`**  
     Manually queues a cache purge request for a specific relative route (e.g., `wp headless-companion purge /about`).
 
-![WP-CLI Commands Execution](images/cli.png)
+![WP-CLI Commands Execution](../.wordpress-org/screenshot-4.png)
