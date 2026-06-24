@@ -1,5 +1,5 @@
 === Headless Companion ===
-Contributors: deepakkumar
+Contributors: iamchitti
 Tags: headless, decoupled, nextjs, webhook, purge, caching
 Requires at least: 6.0
 Tested up to: 6.5

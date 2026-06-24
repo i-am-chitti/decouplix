@@ -4,6 +4,7 @@
  * Description:       Optimize the content editing experience for headless (decoupled) sites. Handles secure previewing, webhook management, automated CDN cache invalidation, and custom WP-CLI tools.
  * Version:           0.1.0
  * Author:            Deepak Kumar
+ * Author URI:        https://profiles.wordpress.org/iamchitti/
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       headless-companion
