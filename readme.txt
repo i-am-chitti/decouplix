@@ -41,7 +41,7 @@ An enterprise-ready WordPress plugin that optimizes the content editing experien
 * Smart Cache Invalidation mapping related URLs for posts and term updates.
 * Secure live draft preview routing and authentication callback system.
 * WPGraphQL extensions supporting preview schema.
-* Custom WP-CLI `wp headless` administration namespace.
+* Custom WP-CLI `wp headless-companion` administration namespace.
 * GitHub Actions CI workflows for automated linting, testing, and release bundling.
 
 == Development & Contribution ==

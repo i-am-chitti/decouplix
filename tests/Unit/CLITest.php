@@ -53,9 +53,9 @@ class CLITest extends TestCase {
 		$instance = CLI::get_instance();
 		$this->assertInstanceOf( CLI::class, $instance );
 
-		$this->assertArrayHasKey( 'headless status', WP_CLI::$commands );
-		$this->assertArrayHasKey( 'headless webhook-trigger', WP_CLI::$commands );
-		$this->assertArrayHasKey( 'headless purge', WP_CLI::$commands );
+		$this->assertArrayHasKey( 'headless-companion status', WP_CLI::$commands );
+		$this->assertArrayHasKey( 'headless-companion webhook-trigger', WP_CLI::$commands );
+		$this->assertArrayHasKey( 'headless-companion purge', WP_CLI::$commands );
 	}
 
 	/**

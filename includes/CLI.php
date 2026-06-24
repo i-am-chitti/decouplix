@@ -42,9 +42,9 @@ class CLI {
 	 */
 	private function __construct() {
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
-			WP_CLI::add_command( 'headless status', array( $this, 'status' ) );
-			WP_CLI::add_command( 'headless webhook-trigger', array( $this, 'webhook_trigger' ) );
-			WP_CLI::add_command( 'headless purge', array( $this, 'purge' ) );
+			WP_CLI::add_command( 'headless-companion status', array( $this, 'status' ) );
+			WP_CLI::add_command( 'headless-companion webhook-trigger', array( $this, 'webhook_trigger' ) );
+			WP_CLI::add_command( 'headless-companion purge', array( $this, 'purge' ) );
 		}
 	}
 
@@ -53,7 +53,7 @@ class CLI {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp headless status
+	 *     wp headless-companion status
 	 *
 	 * @param array $args       Positional arguments.
 	 * @param array $assoc_args Associative arguments.
@@ -97,7 +97,7 @@ class CLI {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp headless webhook-trigger 123
+	 *     wp headless-companion webhook-trigger 123
 	 *
 	 * @param array $args       Positional arguments.
 	 * @param array $assoc_args Associative arguments.
@@ -132,7 +132,7 @@ class CLI {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp headless purge /about
+	 *     wp headless-companion purge /about
 	 *
 	 * @param array $args       Positional arguments.
 	 * @param array $assoc_args Associative arguments.

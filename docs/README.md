@@ -66,14 +66,14 @@ When you update or publish posts, pages, or taxonomy terms, the plugin detects t
 
 ## 4. WP-CLI Administration Commands
 
-For developers and system administrators, the plugin registers custom commands under the `wp headless` namespace. These can be run from your server terminal:
+For developers and system administrators, the plugin registers custom commands under the `wp headless-companion` namespace. These can be run from your server terminal:
 
 ### Available Commands:
-*   **`wp headless status`**  
+*   **`wp headless-companion status`**  
     Prints the current configuration status, including the configured Front-end URL, Webhook Secret configuration state, and a list of all revalidation endpoints.
-*   **`wp headless webhook-trigger <post_id>`**  
+*   **`wp headless-companion webhook-trigger <post_id>`**  
     Manually triggers, signs, and dispatches a webhook payload for a specific post. Helpful for troubleshooting revalidation flow issues.
-*   **`wp headless purge <path>`**  
-    Manually queues a cache purge request for a specific relative route (e.g., `wp headless purge /about`).
+*   **`wp headless-companion purge <path>`**  
+    Manually queues a cache purge request for a specific relative route (e.g., `wp headless-companion purge /about`).
 
 ![WP-CLI Commands Execution](images/cli.png)

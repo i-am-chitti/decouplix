@@ -17,5 +17,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Smart Cache Invalidation mapping and path purging (posts, terms, home page).
 - Secure live draft preview routing and authentication callback.
 - WPGraphQL preview schema extensions.
-- Custom WP-CLI `wp headless` command suite.
+- Custom WP-CLI `wp headless-companion` command suite.
 - GitHub Actions CI workflow for linting & tests, and release bundler workflow.
