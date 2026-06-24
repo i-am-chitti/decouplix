@@ -20,7 +20,7 @@ The React-based settings page allows you to connect WordPress with your decouple
 *   **Webhook Secret:** A unique cryptographic key used to generate HMAC-SHA256 signatures for outgoing webhooks. Click the **Regenerate** button to instantly generate a secure, 32-character random key.
 *   **Cache Revalidation Endpoints:** The URLs on your frontend that will receive POST requests containing modified paths (e.g., `https://my-decoupled-site.com/api/revalidate`), one per line.
 
-![Headless Companion Settings Dashboard](images/image.png)
+![Headless Companion Settings Dashboard](images/settings.png)
 
 ---
 
@@ -37,7 +37,9 @@ When content editors click the **Preview** button in Gutenberg, they need to see
 3. Your frontend makes a secure callback request to the WordPress REST API or WPGraphQL endpoint passing the token in the `Authorization: Bearer [PREVIEW_TOKEN]` header.
 4. WordPress authenticates the request and returns the post draft data.
 
-![Live Draft Previews in Action](images/live-preview.png)
+![Gutenberg Editor Preview Link](images/preview-url.png)
+
+![Live Draft Previews in Action on Decoupled Frontend](images/live-preview.png)
 
 ---
 
