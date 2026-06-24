@@ -17,7 +17,7 @@ Welcome to the documentation for the **Headless Companion & Smart Purge** WordPr
 The React-based settings page allows you to connect WordPress with your decoupled frontend. Go to **Settings > Headless Companion** in the WordPress admin panel to configure the following settings:
 
 *   **Front-end URL:** The root domain of your decoupled site (e.g., `https://my-decoupled-site.com`). Used for preview redirects.
-*   **Webhook URL:** The destination URL for outgoing transition event payloads (e.g., a Vercel Deploy Hook, Zapier, or a custom Next.js endpoint), triggered on post creation/updates.
+*   **Webhook URL:** The destination URL for outgoing transition event payloads (e.g., a Vercel Deploy Hook, Zapier, or a custom Next.js endpoint), triggered on post creation/updates. **Note that outgoing transition webhooks are only queued and dispatched if this field is populated; leave it blank to disable webhooks.**
 *   **Webhook Secret:** A unique cryptographic key used to generate HMAC-SHA256 signatures for outgoing webhooks. Click the **Regenerate** button to instantly generate a secure, 32-character random key.
 *   **Cache Revalidation Endpoints:** The URLs on your frontend that will receive POST requests containing relative modified paths to purge (one per line).
 
@@ -46,7 +46,7 @@ When content editors click the **Preview** button in Gutenberg, they need to see
 
 ## 3. Automated Webhook Dispatch & Smart Purging
 
-When you update or publish posts, pages, or taxonomy terms, the plugin detects these changes and schedules asynchronous background revalidation webhooks.
+When you update or publish posts, pages, or taxonomy terms, the plugin detects these changes and schedules asynchronous background revalidation webhooks. **Note that outgoing webhooks are only enqueued and dispatched if the Webhook URL setting is populated; leaving it blank disables webhook queueing completely.**
 
 ### Features:
 *   **Asynchronous Processing:** Actions are offloaded using Action Scheduler (or fallback WP-Cron) to keep the WordPress editor interface fast and responsive.
