@@ -93,16 +93,14 @@ class Preview {
 		// 1. Check HTTP Header 'X-HC-Secret'
 		if ( isset( $_SERVER['HTTP_X_HC_SECRET'] ) && ! empty( $_SERVER['HTTP_X_HC_SECRET'] ) ) {
 			$request_secret = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_HC_SECRET'] ) );
-		}
-		// 2. Check Authorization Header (Bearer token)
-		elseif ( isset( $_SERVER['HTTP_AUTHORIZATION'] ) && ! empty( $_SERVER['HTTP_AUTHORIZATION'] ) ) {
+		} elseif ( isset( $_SERVER['HTTP_AUTHORIZATION'] ) && ! empty( $_SERVER['HTTP_AUTHORIZATION'] ) ) {
+			// 2. Check Authorization Header (Bearer token)
 			$auth_header = sanitize_text_field( wp_unslash( $_SERVER['HTTP_AUTHORIZATION'] ) );
 			if ( preg_match( '/Bearer\s+(.+)/i', $auth_header, $matches ) ) {
 				$request_secret = $matches[1];
 			}
-		}
-		// 3. Fallback to Apache request headers if HTTP_AUTHORIZATION is missing due to server config
-		elseif ( function_exists( 'apache_request_headers' ) ) {
+		} elseif ( function_exists( 'apache_request_headers' ) ) {
+			// 3. Fallback to Apache request headers if HTTP_AUTHORIZATION is missing due to server config
 			$headers = apache_request_headers();
 			if ( isset( $headers['Authorization'] ) && ! empty( $headers['Authorization'] ) ) {
 				$auth_header = sanitize_text_field( wp_unslash( $headers['Authorization'] ) );

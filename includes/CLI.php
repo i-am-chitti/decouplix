@@ -42,7 +42,9 @@ class CLI {
 	 */
 	private function __construct() {
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
-			WP_CLI::add_command( 'headless', $this );
+			WP_CLI::add_command( 'headless status', array( $this, 'status' ) );
+			WP_CLI::add_command( 'headless webhook-trigger', array( $this, 'webhook_trigger' ) );
+			WP_CLI::add_command( 'headless purge', array( $this, 'purge' ) );
 		}
 	}
 
