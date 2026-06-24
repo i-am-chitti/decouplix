@@ -38,7 +38,7 @@ An enterprise-ready WordPress plugin that optimizes the content editing experien
 We welcome contributions to Headless Companion! Follow these instructions to set up the plugin for local development:
 
 === Prerequisites ===
-* Node.js (version 22.x recommended)
+* Node.js (version specified in .nvmrc)
 * Composer (v2)
 * PHP 7.4 or later
 
