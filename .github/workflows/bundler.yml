@@ -1,0 +1,51 @@
+name: Build & Bundle Plugin Release
+
+on:
+  release:
+    types: [ published ]
+
+permissions:
+  contents: write
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install npm Dependencies
+        run: npm ci
+
+      - name: Compile Production Assets
+        run: npm run build
+
+      - name: Create Production Bundle Directory
+        run: |
+          mkdir -p headless-companion
+          cp -r assets includes headless-companion.php readme.txt headless-companion/
+
+      - name: Zip Plugin Package
+        run: |
+          zip -r headless-companion.zip headless-companion/
+
+      - name: Upload Build Artifact to Run
+        uses: actions/upload-artifact@v4
+        with:
+          name: headless-companion-release
+          path: headless-companion.zip
+          if-no-files-found: error
+
+      - name: Upload Zip to GitHub Release Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: headless-companion.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
