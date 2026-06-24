@@ -31,7 +31,18 @@ An enterprise-ready WordPress plugin that optimizes the content editing experien
 == Changelog ==
 
 = 0.1.0 =
-* Initial release. Bootstrap plugin foundation and autoloader.
+* Initial release.
+* Bootstrap plugin foundation and namespaced PSR-4 autoloader.
+* React-powered settings panel using native WordPress components.
+* Secure REST API endpoints for configuration management.
+* Webhook trigger system on post status transitions.
+* Background revalidation queue using Action Scheduler (with WP-Cron fallback).
+* HMAC-SHA256 cryptographic signing of outgoing payloads.
+* Smart Cache Invalidation mapping related URLs for posts and term updates.
+* Secure live draft preview routing and authentication callback system.
+* WPGraphQL extensions supporting preview schema.
+* Custom WP-CLI `wp headless` administration namespace.
+* GitHub Actions CI workflows for automated linting, testing, and release bundling.
 
 == Development & Contribution ==
 
