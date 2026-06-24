@@ -54,23 +54,23 @@ class QueueTest extends TestCase {
 		$deliver_cron_registered  = false;
 
 		foreach ( $hc_registered_actions as $action ) {
-			if ( 'hc_webhook_triggered' === $action['hook'] ) {
+			if ( 'headless_companion_webhook_triggered' === $action['hook'] ) {
 				$triggered_registered = true;
 				$this->assertEquals( array( $instance, 'enqueue_webhook' ), $action['callback'] );
 			}
-			if ( 'hc_deliver_webhook_async' === $action['hook'] ) {
+			if ( 'headless_companion_deliver_webhook_async' === $action['hook'] ) {
 				$deliver_async_registered = true;
 				$this->assertEquals( array( $instance, 'deliver_webhook' ), $action['callback'] );
 			}
-			if ( 'hc_deliver_webhook_cron' === $action['hook'] ) {
+			if ( 'headless_companion_deliver_webhook_cron' === $action['hook'] ) {
 				$deliver_cron_registered = true;
 				$this->assertEquals( array( $instance, 'deliver_webhook' ), $action['callback'] );
 			}
 		}
 
-		$this->assertTrue( $triggered_registered, 'Failed to assert hc_webhook_triggered hook registered.' );
-		$this->assertTrue( $deliver_async_registered, 'Failed to assert hc_deliver_webhook_async hook registered.' );
-		$this->assertTrue( $deliver_cron_registered, 'Failed to assert hc_deliver_webhook_cron hook registered.' );
+		$this->assertTrue( $triggered_registered, 'Failed to assert headless_companion_webhook_triggered hook registered.' );
+		$this->assertTrue( $deliver_async_registered, 'Failed to assert headless_companion_deliver_webhook_async hook registered.' );
+		$this->assertTrue( $deliver_cron_registered, 'Failed to assert headless_companion_deliver_webhook_cron hook registered.' );
 	}
 
 	/**
@@ -88,7 +88,7 @@ class QueueTest extends TestCase {
 
 		// Since as_enqueue_async_action is defined in bootstrap.php, it should be used.
 		$this->assertCount( 1, $hc_action_scheduler_events );
-		$this->assertEquals( 'hc_deliver_webhook_async', $hc_action_scheduler_events[0]['hook'] );
+		$this->assertEquals( 'headless_companion_deliver_webhook_async', $hc_action_scheduler_events[0]['hook'] );
 		$this->assertEquals( array( $payload ), $hc_action_scheduler_events[0]['args'] );
 		$this->assertEquals( 'headless-companion', $hc_action_scheduler_events[0]['group'] );
 

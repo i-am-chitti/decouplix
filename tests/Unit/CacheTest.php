@@ -60,19 +60,19 @@ class CacheTest extends TestCase {
 				$transition_registered = true;
 				$this->assertEquals( array( $instance, 'handle_post_purge' ), $action['callback'] );
 			}
-			if ( 'hc_purge_paths_async' === $action['hook'] ) {
+			if ( 'headless_companion_purge_paths_async' === $action['hook'] ) {
 				$purge_async_registered = true;
 				$this->assertEquals( array( $instance, 'purge_paths' ), $action['callback'] );
 			}
-			if ( 'hc_purge_paths_cron' === $action['hook'] ) {
+			if ( 'headless_companion_purge_paths_cron' === $action['hook'] ) {
 				$purge_cron_registered = true;
 				$this->assertEquals( array( $instance, 'purge_paths' ), $action['callback'] );
 			}
 		}
 
 		$this->assertTrue( $transition_registered, 'Failed to assert transition_post_status registered.' );
-		$this->assertTrue( $purge_async_registered, 'Failed to assert hc_purge_paths_async registered.' );
-		$this->assertTrue( $purge_cron_registered, 'Failed to assert hc_purge_paths_cron registered.' );
+		$this->assertTrue( $purge_async_registered, 'Failed to assert headless_companion_purge_paths_async registered.' );
+		$this->assertTrue( $purge_cron_registered, 'Failed to assert headless_companion_purge_paths_cron registered.' );
 	}
 
 	/**
@@ -128,7 +128,7 @@ class CacheTest extends TestCase {
 
 		global $hc_action_scheduler_events;
 		$this->assertCount( 1, $hc_action_scheduler_events );
-		$this->assertEquals( 'hc_purge_paths_async', $hc_action_scheduler_events[0]['hook'] );
+		$this->assertEquals( 'headless_companion_purge_paths_async', $hc_action_scheduler_events[0]['hook'] );
 
 		$paths = $hc_action_scheduler_events[0]['args'][0];
 		$this->assertContains( '/?p=789', $paths );
@@ -158,7 +158,7 @@ class CacheTest extends TestCase {
 		// Verify actions fired (one for each endpoint)
 		$delivered_events = array();
 		foreach ( $hc_fired_actions as $action ) {
-			if ( 'hc_cache_purged' === $action['tag'] ) {
+			if ( 'headless_companion_cache_purged' === $action['tag'] ) {
 				$delivered_events[] = $action['args'];
 			}
 		}

@@ -1,6 +1,6 @@
 === Headless Companion ===
 Contributors: iamchitti
-Tags: headless, decoupled, nextjs, webhook, purge, caching
+Tags: headless, decoupled, nextjs, webhook, purge
 Requires at least: 6.0
 Tested up to: 7.0
 Stable tag: 0.1.0
@@ -8,7 +8,7 @@ Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Optimize the content editing experience for headless (decoupled) WordPress sites. Handles secure previewing, webhook management, automated CDN cache invalidation, and custom WP-CLI tools.
+Optimize headless WordPress editing with secure previews, webhook dispatch queueing, automated CDN cache invalidation, and custom WP-CLI tools.
 
 == Description ==
 

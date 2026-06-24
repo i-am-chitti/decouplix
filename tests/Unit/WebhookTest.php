@@ -77,7 +77,7 @@ class WebhookTest extends TestCase {
 
 		global $hc_fired_actions;
 		$this->assertCount( 1, $hc_fired_actions );
-		$this->assertEquals( 'hc_webhook_triggered', $hc_fired_actions[0]['tag'] );
+		$this->assertEquals( 'headless_companion_webhook_triggered', $hc_fired_actions[0]['tag'] );
 
 		$payload = $hc_fired_actions[0]['args'][0];
 		$this->assertEquals( 'post_publish', $payload['event'] );

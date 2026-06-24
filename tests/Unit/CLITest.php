@@ -132,7 +132,7 @@ class CLITest extends TestCase {
 
 		global $hc_action_scheduler_events;
 		$this->assertCount( 1, $hc_action_scheduler_events );
-		$this->assertEquals( 'hc_purge_paths_async', $hc_action_scheduler_events[0]['hook'] );
+		$this->assertEquals( 'headless_companion_purge_paths_async', $hc_action_scheduler_events[0]['hook'] );
 		$this->assertEquals( array( '/some-relative-page' ), $hc_action_scheduler_events[0]['args'][0] );
 
 		$this->assertContains( 'Cache purge queued successfully.', WP_CLI::$successes );

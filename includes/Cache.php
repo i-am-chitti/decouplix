@@ -42,8 +42,8 @@ class Cache {
 	 */
 	private function __construct() {
 		add_action( 'transition_post_status', array( $this, 'handle_post_purge' ), 10, 3 );
-		add_action( 'hc_purge_paths_async', array( $this, 'purge_paths' ) );
-		add_action( 'hc_purge_paths_cron', array( $this, 'purge_paths' ) );
+		add_action( 'headless_companion_purge_paths_async', array( $this, 'purge_paths' ) );
+		add_action( 'headless_companion_purge_paths_cron', array( $this, 'purge_paths' ) );
 	}
 
 	/**
@@ -139,9 +139,9 @@ class Cache {
 	 */
 	public function enqueue_purge( $paths ) {
 		if ( function_exists( 'as_enqueue_async_action' ) ) {
-			as_enqueue_async_action( 'hc_purge_paths_async', array( $paths ), 'headless-companion' );
+			as_enqueue_async_action( 'headless_companion_purge_paths_async', array( $paths ), 'headless-companion' );
 		} else {
-			wp_schedule_single_event( time(), 'hc_purge_paths_cron', array( $paths ) );
+			wp_schedule_single_event( time(), 'headless_companion_purge_paths_cron', array( $paths ) );
 		}
 	}
 
@@ -199,7 +199,7 @@ class Cache {
 				)
 			);
 
-			do_action( 'hc_cache_purged', $endpoint, $paths );
+			do_action( 'headless_companion_cache_purged', $endpoint, $paths );
 		}
 	}
 }
