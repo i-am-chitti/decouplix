@@ -32,6 +32,7 @@ jobs:
         run: |
           mkdir -p dist/headless-companion
           cp -r build includes languages headless-companion.php readme.txt LICENSE dist/headless-companion/
+          rm -f dist/headless-companion/languages/.gitkeep
 
       - name: Zip Plugin Package
         run: |
