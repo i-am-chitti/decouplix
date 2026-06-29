@@ -2,13 +2,13 @@
 /**
  * CLI Test Case
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion\Tests\Unit;
+namespace Decouplix\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use HeadlessCompanion\CLI;
+use Decouplix\CLI;
 use WP_Post;
 use WP_CLI;
 
@@ -53,9 +53,9 @@ class CLITest extends TestCase {
 		$instance = CLI::get_instance();
 		$this->assertInstanceOf( CLI::class, $instance );
 
-		$this->assertArrayHasKey( 'headless-companion status', WP_CLI::$commands );
-		$this->assertArrayHasKey( 'headless-companion webhook-trigger', WP_CLI::$commands );
-		$this->assertArrayHasKey( 'headless-companion purge', WP_CLI::$commands );
+		$this->assertArrayHasKey( 'decouplix status', WP_CLI::$commands );
+		$this->assertArrayHasKey( 'decouplix webhook-trigger', WP_CLI::$commands );
+		$this->assertArrayHasKey( 'decouplix purge', WP_CLI::$commands );
 	}
 
 	/**
@@ -75,7 +75,7 @@ class CLITest extends TestCase {
 
 		$instance->status( array(), array() );
 
-		$this->assertContains( 'Headless Companion Configuration Status:', WP_CLI::$lines );
+		$this->assertContains( 'Decouplix Configuration Status:', WP_CLI::$lines );
 		$this->assertContains( 'Frontend URL:   https://my-headless-frontend.com', WP_CLI::$lines );
 		$this->assertContains( 'Webhook Secret: Configured (Secret Hidden)', WP_CLI::$lines );
 		$this->assertContains( 'Cache Purge Endpoints (2):', WP_CLI::$lines );
@@ -132,7 +132,7 @@ class CLITest extends TestCase {
 
 		global $hc_action_scheduler_events;
 		$this->assertCount( 1, $hc_action_scheduler_events );
-		$this->assertEquals( 'headless_companion_purge_paths_async', $hc_action_scheduler_events[0]['hook'] );
+		$this->assertEquals( 'decouplix_purge_paths_async', $hc_action_scheduler_events[0]['hook'] );
 		$this->assertEquals( array( '/some-relative-page' ), $hc_action_scheduler_events[0]['args'][0] );
 
 		$this->assertContains( 'Cache purge queued successfully.', WP_CLI::$successes );

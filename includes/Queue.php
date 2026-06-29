@@ -2,10 +2,10 @@
 /**
  * Queue Class
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion;
+namespace Decouplix;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -39,9 +39,9 @@ class Queue {
 	 * Constructor.
 	 */
 	private function __construct() {
-		add_action( 'headless_companion_webhook_triggered', array( $this, 'enqueue_webhook' ) );
-		add_action( 'headless_companion_deliver_webhook_async', array( $this, 'deliver_webhook' ) );
-		add_action( 'headless_companion_deliver_webhook_cron', array( $this, 'deliver_webhook' ) );
+		add_action( 'decouplix_webhook_triggered', array( $this, 'enqueue_webhook' ) );
+		add_action( 'decouplix_deliver_webhook_async', array( $this, 'deliver_webhook' ) );
+		add_action( 'decouplix_deliver_webhook_cron', array( $this, 'deliver_webhook' ) );
 	}
 
 	/**
@@ -54,9 +54,9 @@ class Queue {
 	 */
 	public function enqueue_webhook( $payload ) {
 		if ( function_exists( 'as_enqueue_async_action' ) ) {
-			as_enqueue_async_action( 'headless_companion_deliver_webhook_async', array( $payload ), 'headless-companion' );
+			as_enqueue_async_action( 'decouplix_deliver_webhook_async', array( $payload ), 'decouplix' );
 		} else {
-			wp_schedule_single_event( time(), 'headless_companion_deliver_webhook_cron', array( $payload ) );
+			wp_schedule_single_event( time(), 'decouplix_deliver_webhook_cron', array( $payload ) );
 		}
 	}
 
@@ -105,7 +105,7 @@ class Queue {
 			)
 		);
 
-		do_action( 'headless_companion_webhook_delivered', $response, $payload );
+		do_action( 'decouplix_webhook_delivered', $response, $payload );
 
 		if ( is_wp_error( $response ) ) {
 			return $response;

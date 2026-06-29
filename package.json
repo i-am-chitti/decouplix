@@ -1,7 +1,7 @@
 {
-	"name": "headless-companion",
+	"name": "decouplix",
 	"version": "0.1.0",
-	"description": "React-based admin settings dashboard for Headless Companion.",
+	"description": "React-based admin settings dashboard for Decouplix.",
 	"private": true,
 	"scripts": {
 		"build": "wp-scripts build",

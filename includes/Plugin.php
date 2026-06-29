@@ -2,17 +2,17 @@
 /**
  * Main Plugin Class
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion;
+namespace Decouplix;
 
 defined( 'ABSPATH' ) || exit;
 
 /**
  * Class Plugin
  *
- * Main orchestrator of the Headless Companion plugin.
+ * Main orchestrator of the Decouplix plugin.
  */
 class Plugin {
 

@@ -35,7 +35,7 @@ const App = () => {
 
 	// Fetch settings from REST API on mount.
 	useEffect( () => {
-		apiFetch( { path: 'headless-companion/v1/settings' } )
+		apiFetch( { path: 'decouplix/v1/settings' } )
 			.then( ( data ) => {
 				setSettings( data );
 				setIsLoading( false );
@@ -60,7 +60,7 @@ const App = () => {
 		setNotice( null );
 
 		apiFetch( {
-			path: 'headless-companion/v1/settings',
+			path: 'decouplix/v1/settings',
 			method: 'POST',
 			data: settings,
 		} )
@@ -117,7 +117,7 @@ const App = () => {
 			className="hc-settings-wrap"
 			style={ { maxWidth: '800px', margin: '20px 0' } }
 		>
-			<h2>Headless Companion Settings</h2>
+			<h2>Decouplix Settings</h2>
 			<p className="description" style={ { marginBottom: '20px' } }>
 				Configure your decoupled frontend configurations below to enable
 				automatic caching purges, preview hooks, and secure webhook

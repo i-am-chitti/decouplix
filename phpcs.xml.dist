@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="Headless Companion Rules">
-	<description>WordPress Coding Standards for Headless Companion plugin</description>
+<ruleset name="Decouplix Rules">
+	<description>WordPress Coding Standards for Decouplix plugin</description>
 
 	<!-- Target paths to scan -->
 	<file>.</file>
@@ -34,7 +34,7 @@
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="headless-companion"/>
+				<element value="decouplix"/>
 			</property>
 		</properties>
 	</rule>

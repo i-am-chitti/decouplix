@@ -1,4 +1,4 @@
-=== Headless Companion ===
+=== Decouplix Previews & Smart Purge ===
 Contributors: iamchitti
 Tags: headless, decoupled, nextjs, webhook, purge
 Requires at least: 6.0
@@ -26,7 +26,7 @@ An enterprise-ready WordPress plugin that optimizes the content editing experien
 
 1. Upload the plugin directory to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Navigate to **Settings > Headless Companion** to configure your front-end URL, webhook secrets, and cache configuration.
+3. Navigate to **Settings > Decouplix** to configure your front-end URL, webhook secrets, and cache configuration.
 
 == Changelog ==
 
@@ -41,12 +41,12 @@ An enterprise-ready WordPress plugin that optimizes the content editing experien
 * Smart Cache Invalidation mapping related URLs for posts and term updates.
 * Secure live draft preview routing and authentication callback system.
 * WPGraphQL extensions supporting preview schema.
-* Custom WP-CLI `wp headless-companion` administration namespace.
+* Custom WP-CLI `wp decouplix` administration namespace.
 * GitHub Actions CI workflows for automated linting, testing, and release bundling.
 
-== Development & Contribution ==
+The plugin is actively developed and maintained at: https://github.com/i-am-chitti/decouplix
 
-We welcome contributions to Headless Companion! Follow these instructions to set up the plugin for local development:
+We welcome contributions to Decouplix! Follow these instructions to set up the plugin for local development:
 
 === Prerequisites ===
 * Node.js (version specified in .nvmrc)
@@ -70,7 +70,17 @@ We welcome contributions to Headless Companion! Follow these instructions to set
 
 == Screenshots ==
 
-1. React-powered Headless Companion settings dashboard with clean, horizontal settings alignment.
+1. React-powered Decouplix settings dashboard with clean, horizontal settings alignment.
 2. Setting configuration details for Webhook URL, Webhook Secret, and Cache Purge Endpoints.
 3. Secure Live Draft Preview routing workflow from the Gutenberg editor.
-4. Custom WP-CLI `wp headless-companion` command suite for advanced administration.
+4. Custom WP-CLI `wp decouplix` command suite for advanced administration.
+
+== External Services ==
+
+This plugin is designed to connect to external frontend frameworks, content delivery networks (CDNs), or deployment hosting providers (such as Vercel, Netlify, or custom webhook endpoints) to handle cache revalidation and trigger frontend deploys.
+
+Depending on the Webhook URL and Cache Purge Endpoints configured by the administrator in the settings panel:
+* Outgoing HTTP POST requests (containing post metadata, URLs to be purged, and cryptographic signatures) will be sent to the user-specified endpoints when posts/pages are published or modified.
+* Default/example placeholders reference Vercel. For more details on these integrations, see:
+  * Vercel Terms of Service: https://vercel.com/legal/terms
+  * Vercel Privacy Policy: https://vercel.com/legal/privacy-policy

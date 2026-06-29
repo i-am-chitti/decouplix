@@ -30,18 +30,18 @@ jobs:
 
       - name: Create Production Bundle Directory
         run: |
-          mkdir -p dist/headless-companion
-          cp -r build includes languages headless-companion.php readme.txt LICENSE dist/headless-companion/
+          mkdir -p dist/decouplix
+          cp -r build includes languages decouplix.php readme.txt LICENSE dist/decouplix/
 
       - name: Zip Plugin Package
         run: |
           cd dist
-          zip -r ../headless-companion.zip headless-companion/
+          zip -r ../decouplix.zip decouplix/
 
       - name: Upload Build Artifact to Run
         uses: actions/upload-artifact@v4
         with:
-          name: headless-companion
+          name: decouplix
           path: dist/
           include-hidden-files: true
           if-no-files-found: error
@@ -50,6 +50,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: github.event_name == 'release'
         with:
-          files: headless-companion.zip
+          files: decouplix.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

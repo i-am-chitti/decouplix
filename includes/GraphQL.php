@@ -2,10 +2,10 @@
 /**
  * GraphQL Class
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion;
+namespace Decouplix;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -103,7 +103,7 @@ class GraphQL {
 			'headlessPreviewUrl',
 			array(
 				'type'        => 'String',
-				'description' => __( 'Headless preview URL for the content node.', 'headless-companion' ),
+				'description' => __( 'Headless preview URL for the content node.', 'decouplix' ),
 				'resolve'     => function ( $post ) {
 					// phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 					if ( ! isset( $post->databaseId ) ) {

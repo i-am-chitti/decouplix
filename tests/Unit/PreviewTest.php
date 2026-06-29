@@ -2,13 +2,13 @@
 /**
  * Preview Test Case
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion\Tests\Unit;
+namespace Decouplix\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use HeadlessCompanion\Preview;
+use Decouplix\Preview;
 use WP_Post;
 
 /**

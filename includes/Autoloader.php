@@ -1,11 +1,11 @@
 <?php
 /**
- * PSR-4 Autoloader for Headless Companion
+ * PSR-4 Autoloader for Decouplix
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion;
+namespace Decouplix;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -26,14 +26,14 @@ class Autoloader {
 	}
 
 	/**
-	 * Autoload class files matching the HeadlessCompanion namespace prefix.
+	 * Autoload class files matching the Decouplix namespace prefix.
 	 *
 	 * @param string $class_name The fully-qualified class name.
 	 * @return void
 	 */
 	public static function autoload( $class_name ) {
 		// Project-specific namespace prefix.
-		$prefix = 'HeadlessCompanion\\';
+		$prefix = 'Decouplix\\';
 
 		// Base directory for the namespace prefix.
 		$base_dir = __DIR__ . '/';

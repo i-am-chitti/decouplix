@@ -2,10 +2,10 @@
 /**
  * Webhook Class
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion;
+namespace Decouplix;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -120,13 +120,13 @@ class Webhook {
 	/**
 	 * Dispatch the webhook payload.
 	 *
-	 * Note: Asynchronous queueing is hooked into 'headless_companion_webhook_triggered'.
+	 * Note: Asynchronous queueing is hooked into 'decouplix_webhook_triggered'.
 	 *
 	 * @param array $payload The webhook payload array.
 	 * @return bool
 	 */
 	public function dispatch_webhook( $payload ) {
-		do_action( 'headless_companion_webhook_triggered', $payload );
+		do_action( 'decouplix_webhook_triggered', $payload );
 		return true;
 	}
 }

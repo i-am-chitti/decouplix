@@ -2,7 +2,7 @@
 /**
  * PHPUnit Bootstrap
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
 // Define path constants.
@@ -21,7 +21,7 @@ if ( file_exists( HC_PLUGIN_DIR . 'vendor/autoload.php' ) ) {
 
 // Load the autoloader.
 require_once HC_PLUGIN_DIR . 'includes/Autoloader.php';
-\HeadlessCompanion\Autoloader::register();
+\Decouplix\Autoloader::register();
 
 if ( ! function_exists( 'add_action' ) ) {
 	function add_action( $hook, $callback, $priority = 10, $accepted_args = 1 ) {

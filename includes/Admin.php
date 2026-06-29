@@ -2,10 +2,10 @@
 /**
  * Admin Class
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion;
+namespace Decouplix;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -50,10 +50,10 @@ class Admin {
 	 */
 	public function register_settings_page() {
 		add_options_page(
-			__( 'Headless Companion Settings', 'headless-companion' ),
-			__( 'Headless Companion', 'headless-companion' ),
+			__( 'Decouplix Settings', 'decouplix' ),
+			__( 'Decouplix', 'decouplix' ),
 			'manage_options',
-			'headless-companion',
+			'decouplix',
 			array( $this, 'render_settings_page' )
 		);
 	}
@@ -81,7 +81,7 @@ class Admin {
 	 */
 	public function enqueue_admin_assets( $hook_suffix ) {
 		// Only enqueue on our plugin's settings page.
-		if ( 'settings_page_headless-companion' !== $hook_suffix ) {
+		if ( 'settings_page_decouplix' !== $hook_suffix ) {
 			return;
 		}
 

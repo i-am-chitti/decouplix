@@ -2,8 +2,8 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Headless Companion 0.1.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/headless-companion\n"
+"Project-Id-Version: Decouplix 0.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/decouplix\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -12,31 +12,31 @@ msgstr ""
 "POT-Creation-Date: 2026-06-26T09:00:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
-"X-Domain: headless-companion\n"
+"X-Domain: decouplix\n"
 
 #. Plugin Name of the plugin
-#: headless-companion.php
+#: decouplix.php
 #: includes/Admin.php:54
-msgid "Headless Companion"
+msgid "Decouplix"
 msgstr ""
 
 #. Description of the plugin
-#: headless-companion.php
+#: decouplix.php
 msgid "Optimize the content editing experience for headless (decoupled) sites. Handles secure previewing, webhook management, automated CDN cache invalidation, and custom WP-CLI tools."
 msgstr ""
 
 #. Author of the plugin
-#: headless-companion.php
+#: decouplix.php
 msgid "Deepak Kumar"
 msgstr ""
 
 #. Author URI of the plugin
-#: headless-companion.php
+#: decouplix.php
 msgid "https://profiles.wordpress.org/iamchitti/"
 msgstr ""
 
 #: includes/Admin.php:53
-msgid "Headless Companion Settings"
+msgid "Decouplix Settings"
 msgstr ""
 
 #: includes/GraphQL.php:106

@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2026-06-24
 
 ### Added
-- Namespaced PSR-4 autoloader (`HeadlessCompanion\Autoloader`) and plugin bootstrap.
+- Namespaced PSR-4 autoloader (`Decouplix\Autoloader`) and plugin bootstrap.
 - React settings dashboard panel using native `@wordpress/components`.
 - Secure REST API endpoints for settings storage and retrieval.
 - Automated webhook dispatch on post status transitions (publish, update, trash).
@@ -17,5 +17,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Smart Cache Invalidation mapping and path purging (posts, terms, home page).
 - Secure live draft preview routing and authentication callback.
 - WPGraphQL preview schema extensions.
-- Custom WP-CLI `wp headless-companion` command suite.
+- Custom WP-CLI `wp decouplix` command suite.
 - GitHub Actions CI workflow for linting & tests, and release bundler workflow.

@@ -2,13 +2,13 @@
 /**
  * GraphQL Test Case
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion\Tests\Unit;
+namespace Decouplix\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use HeadlessCompanion\GraphQL;
+use Decouplix\GraphQL;
 
 /**
  * Class GraphQLTest

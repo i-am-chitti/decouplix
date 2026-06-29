@@ -2,10 +2,10 @@
 /**
  * CLI Class
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion;
+namespace Decouplix;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -14,7 +14,7 @@ use WP_CLI;
 /**
  * Class CLI
  *
- * Implements WP-CLI commands for Headless Companion management.
+ * Implements WP-CLI commands for Decouplix management.
  */
 class CLI {
 
@@ -42,9 +42,9 @@ class CLI {
 	 */
 	private function __construct() {
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
-			WP_CLI::add_command( 'headless-companion status', array( $this, 'status' ) );
-			WP_CLI::add_command( 'headless-companion webhook-trigger', array( $this, 'webhook_trigger' ) );
-			WP_CLI::add_command( 'headless-companion purge', array( $this, 'purge' ) );
+			WP_CLI::add_command( 'decouplix status', array( $this, 'status' ) );
+			WP_CLI::add_command( 'decouplix webhook-trigger', array( $this, 'webhook_trigger' ) );
+			WP_CLI::add_command( 'decouplix purge', array( $this, 'purge' ) );
 		}
 	}
 
@@ -53,7 +53,7 @@ class CLI {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp headless-companion status
+	 *     wp decouplix status
 	 *
 	 * @param array $args       Positional arguments.
 	 * @param array $assoc_args Associative arguments.
@@ -67,7 +67,7 @@ class CLI {
 		$secret      = isset( $settings['webhook_secret'] ) ? $settings['webhook_secret'] : '';
 		$purge       = isset( $settings['cache_endpoints'] ) ? $settings['cache_endpoints'] : '';
 
-		WP_CLI::line( 'Headless Companion Configuration Status:' );
+		WP_CLI::line( 'Decouplix Configuration Status:' );
 		WP_CLI::line( '----------------------------------------' );
 		WP_CLI::line( sprintf( 'Frontend URL:   %s', ! empty( $url ) ? $url : 'Not Configured' ) );
 		WP_CLI::line( sprintf( 'Webhook URL:    %s', ! empty( $webhook_url ) ? $webhook_url : 'Not Configured' ) );
@@ -97,7 +97,7 @@ class CLI {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp headless-companion webhook-trigger 123
+	 *     wp decouplix webhook-trigger 123
 	 *
 	 * @param array $args       Positional arguments.
 	 * @param array $assoc_args Associative arguments.
@@ -132,7 +132,7 @@ class CLI {
 	 *
 	 * ## EXAMPLES
 	 *
-	 *     wp headless-companion purge /about
+	 *     wp decouplix purge /about
 	 *
 	 * @param array $args       Positional arguments.
 	 * @param array $assoc_args Associative arguments.

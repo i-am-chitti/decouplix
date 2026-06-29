@@ -2,13 +2,13 @@
 /**
  * REST_API Test Case
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion\Tests\Unit;
+namespace Decouplix\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use HeadlessCompanion\REST_API;
+use Decouplix\REST_API;
 use WP_REST_Request;
 use WP_Error;
 
@@ -74,7 +74,7 @@ class REST_APITest extends TestCase {
 		$this->assertCount( 1, $hc_registered_routes );
 		$route = $hc_registered_routes[0];
 
-		$this->assertEquals( 'headless-companion/v1', $route['namespace'] );
+		$this->assertEquals( 'decouplix/v1', $route['namespace'] );
 		$this->assertEquals( '/settings', $route['route'] );
 		$this->assertCount( 2, $route['args'] ); // GET and POST
 

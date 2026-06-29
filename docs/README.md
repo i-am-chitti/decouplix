@@ -1,6 +1,6 @@
-# 📖 Headless Companion Documentation
+# 📖 Decouplix Documentation
 
-Welcome to the documentation for the **Headless Companion** WordPress plugin. This plugin optimizes the content editing experience for headless (decoupled) websites by offering secure previews, automated webhook-based cache invalidation, and advanced CLI tools.
+Welcome to the documentation for the **Decouplix** WordPress plugin. This plugin optimizes the content editing experience for headless (decoupled) websites by offering secure previews, automated webhook-based cache invalidation, and advanced CLI tools.
 
 ---
 
@@ -14,14 +14,14 @@ Welcome to the documentation for the **Headless Companion** WordPress plugin. Th
 
 ## 1. Settings & Dashboard Configuration
 
-The React-based settings page allows you to connect WordPress with your decoupled frontend. Go to **Settings > Headless Companion** in the WordPress admin panel to configure the following settings:
+The React-based settings page allows you to connect WordPress with your decoupled frontend. Go to **Settings > Decouplix** in the WordPress admin panel to configure the following settings:
 
 *   **Front-end URL:** The root domain of your decoupled site (e.g., `https://my-decoupled-site.com`). Used for preview redirects.
 *   **Webhook URL:** The destination URL for outgoing transition event payloads (e.g., a Vercel Deploy Hook, Zapier, or a custom Next.js endpoint), triggered on post creation/updates. **Note that outgoing transition webhooks are only queued and dispatched if this field is populated; leave it blank to disable webhooks.**
 *   **Webhook Secret:** A unique cryptographic key used to generate HMAC-SHA256 signatures for outgoing webhooks. Click the **Regenerate** button to instantly generate a secure, 32-character random key.
 *   **Cache Revalidation Endpoints:** The URLs on your frontend that will receive POST requests containing relative modified paths to purge (one per line).
 
-![Headless Companion Settings Dashboard](../.wordpress-org/screenshot-1.png)
+![Decouplix Settings Dashboard](../.wordpress-org/screenshot-1.png)
 
 ---
 
@@ -66,14 +66,14 @@ When you update or publish posts, pages, or taxonomy terms, the plugin detects t
 
 ## 4. WP-CLI Administration Commands
 
-For developers and system administrators, the plugin registers custom commands under the `wp headless-companion` namespace. These can be run from your server terminal:
+For developers and system administrators, the plugin registers custom commands under the `wp decouplix` namespace. These can be run from your server terminal:
 
 ### Available Commands:
-*   **`wp headless-companion status`**  
+*   **`wp decouplix status`**  
     Prints the current configuration status, including the configured Front-end URL, Webhook Secret configuration state, and a list of all revalidation endpoints.
-*   **`wp headless-companion webhook-trigger <post_id>`**  
+*   **`wp decouplix webhook-trigger <post_id>`**  
     Manually triggers, signs, and dispatches a webhook payload for a specific post. Helpful for troubleshooting revalidation flow issues.
-*   **`wp headless-companion purge <path>`**  
-    Manually queues a cache purge request for a specific relative route (e.g., `wp headless-companion purge /about`).
+*   **`wp decouplix purge <path>`**  
+    Manually queues a cache purge request for a specific relative route (e.g., `wp decouplix purge /about`).
 
 ![WP-CLI Commands Execution](../.wordpress-org/screenshot-4.png)

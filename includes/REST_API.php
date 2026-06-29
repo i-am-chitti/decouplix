@@ -2,10 +2,10 @@
 /**
  * REST API Class
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion;
+namespace Decouplix;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -25,7 +25,7 @@ class REST_API {
 	 *
 	 * @var string
 	 */
-	private $namespace = 'headless-companion/v1';
+	private $namespace = 'decouplix/v1';
 
 	/**
 	 * Route path for settings.
@@ -129,7 +129,7 @@ class REST_API {
 		if ( ! filter_var( $value, FILTER_VALIDATE_URL ) ) {
 			return new WP_Error(
 				'rest_invalid_url',
-				__( 'The provided Front-end URL is invalid.', 'headless-companion' ),
+				__( 'The provided Front-end URL is invalid.', 'decouplix' ),
 				array( 'status' => 400 )
 			);
 		}
@@ -187,7 +187,7 @@ class REST_API {
 			if ( $current !== $settings ) {
 				return new WP_Error(
 					'rest_save_failed',
-					__( 'Failed to update settings in the database.', 'headless-companion' ),
+					__( 'Failed to update settings in the database.', 'decouplix' ),
 					array( 'status' => 500 )
 				);
 			}
@@ -196,7 +196,7 @@ class REST_API {
 		return new WP_REST_Response(
 			array(
 				'success' => true,
-				'message' => __( 'Settings updated successfully.', 'headless-companion' ),
+				'message' => __( 'Settings updated successfully.', 'decouplix' ),
 				'data'    => $settings,
 			),
 			200

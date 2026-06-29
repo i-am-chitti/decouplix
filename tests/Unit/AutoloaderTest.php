@@ -2,10 +2,10 @@
 /**
  * Autoloader Test Case
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion\Tests\Unit;
+namespace Decouplix\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 
@@ -22,6 +22,6 @@ class AutoloaderTest extends TestCase {
 	 * @return void
 	 */
 	public function test_autoload_loads_existing_class() {
-		$this->assertTrue( class_exists( 'HeadlessCompanion\Plugin' ) );
+		$this->assertTrue( class_exists( 'Decouplix\Plugin' ) );
 	}
 }

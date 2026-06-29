@@ -2,13 +2,13 @@
 /**
  * Admin Test Case
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
-namespace HeadlessCompanion\Tests\Unit;
+namespace Decouplix\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use HeadlessCompanion\Admin;
+use Decouplix\Admin;
 
 /**
  * Class AdminTest

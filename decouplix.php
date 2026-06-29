@@ -1,18 +1,18 @@
 <?php
 /**
- * Plugin Name:       Headless Companion
+ * Plugin Name:       Decouplix Previews & Smart Purge
  * Description:       Optimize the content editing experience for headless (decoupled) sites. Handles secure previewing, webhook management, automated CDN cache invalidation, and custom WP-CLI tools.
  * Version:           0.1.0
  * Author:            Deepak Kumar
  * Author URI:        https://profiles.wordpress.org/iamchitti/
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       headless-companion
+ * Text Domain:       decouplix
  * Domain Path:       /languages
  * Requires PHP:      7.4
  * Requires at least: 6.0
  *
- * @package HeadlessCompanion
+ * @package Decouplix
  */
 
 // If this file is called directly, abort.
@@ -26,11 +26,11 @@ define( 'HC_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 
 // Load Autoloader.
 require_once HC_PLUGIN_DIR . 'includes/Autoloader.php';
-\HeadlessCompanion\Autoloader::register();
+\Decouplix\Autoloader::register();
 
 // Register activation and deactivation hooks.
-register_activation_hook( __FILE__, array( 'HeadlessCompanion\Plugin', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'HeadlessCompanion\Plugin', 'deactivate' ) );
+register_activation_hook( __FILE__, array( 'Decouplix\Plugin', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'Decouplix\Plugin', 'deactivate' ) );
 
 // Initialize the plugin on plugins_loaded.
-add_action( 'plugins_loaded', array( 'HeadlessCompanion\Plugin', 'get_instance' ) );
+add_action( 'plugins_loaded', array( 'Decouplix\Plugin', 'get_instance' ) );
