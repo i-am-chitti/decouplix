@@ -3,7 +3,7 @@ Contributors: iamchitti
 Tags: headless, decoupled, nextjs, webhook, purge
 Requires at least: 6.0
 Tested up to: 7.0
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -29,6 +29,10 @@ An enterprise-ready WordPress plugin that optimizes the content editing experien
 3. Navigate to **Settings > Decouplix** to configure your front-end URL, webhook secrets, and cache configuration.
 
 == Changelog ==
+
+= 0.1.1 =
+* Rename plugin to Decouplix Previews & Smart Purge.
+* Update documentation for public GitHub repository and external integrations.
 
 = 0.1.0 =
 * Initial release.

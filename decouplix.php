@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Decouplix Previews & Smart Purge
  * Description:       Optimize the content editing experience for headless (decoupled) sites. Handles secure previewing, webhook management, automated CDN cache invalidation, and custom WP-CLI tools.
- * Version:           0.1.0
+ * Version:           0.1.1
  * Author:            Deepak Kumar
  * Author URI:        https://profiles.wordpress.org/iamchitti/
  * License:           GPLv2 or later
@@ -19,7 +19,7 @@
 defined( 'ABSPATH' ) || exit;
 
 // Define plugin-wide constants.
-define( 'HC_VERSION', '0.1.0' );
+define( 'HC_VERSION', '0.1.1' );
 define( 'HC_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'HC_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'HC_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
