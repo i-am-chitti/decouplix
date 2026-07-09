@@ -7,29 +7,29 @@
 
 // Define path constants.
 define( 'HC_TESTS_DIR', __DIR__ );
-define( 'HC_PLUGIN_DIR', dirname( __DIR__ ) . '/' );
+define( 'DECOUPLIX_PLUGIN_DIR', dirname( __DIR__ ) . '/' );
 
 // Define mock ABSPATH and functions if not running inside real WordPress test suite.
 if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', HC_PLUGIN_DIR );
+	define( 'ABSPATH', DECOUPLIX_PLUGIN_DIR );
 }
 
 // Load Composer autoloader.
-if ( file_exists( HC_PLUGIN_DIR . 'vendor/autoload.php' ) ) {
-	require_once HC_PLUGIN_DIR . 'vendor/autoload.php';
+if ( file_exists( DECOUPLIX_PLUGIN_DIR . 'vendor/autoload.php' ) ) {
+	require_once DECOUPLIX_PLUGIN_DIR . 'vendor/autoload.php';
 }
 
 // Load the autoloader.
-require_once HC_PLUGIN_DIR . 'includes/Autoloader.php';
+require_once DECOUPLIX_PLUGIN_DIR . 'includes/Autoloader.php';
 \Decouplix\Autoloader::register();
 
 if ( ! function_exists( 'add_action' ) ) {
 	function add_action( $hook, $callback, $priority = 10, $accepted_args = 1 ) {
-		global $hc_registered_actions;
-		if ( ! is_array( $hc_registered_actions ) ) {
-			$hc_registered_actions = array();
+		global $decouplix_registered_actions;
+		if ( ! is_array( $decouplix_registered_actions ) ) {
+			$decouplix_registered_actions = array();
 		}
-		$hc_registered_actions[] = array(
+		$decouplix_registered_actions[] = array(
 			'hook'          => $hook,
 			'callback'      => $callback,
 			'priority'      => $priority,
@@ -39,11 +39,11 @@ if ( ! function_exists( 'add_action' ) ) {
 }
 if ( ! function_exists( 'add_filter' ) ) {
 	function add_filter( $hook, $callback, $priority = 10, $accepted_args = 1 ) {
-		global $hc_registered_actions;
-		if ( ! is_array( $hc_registered_actions ) ) {
-			$hc_registered_actions = array();
+		global $decouplix_registered_actions;
+		if ( ! is_array( $decouplix_registered_actions ) ) {
+			$decouplix_registered_actions = array();
 		}
-		$hc_registered_actions[] = array(
+		$decouplix_registered_actions[] = array(
 			'hook'          => $hook,
 			'callback'      => $callback,
 			'priority'      => $priority,
@@ -60,20 +60,20 @@ if ( ! function_exists( 'register_deactivation_hook' ) ) {
 }
 if ( ! function_exists( 'get_option' ) ) {
 	function get_option( $option, $default = false ) {
-		global $hc_mock_options;
-		if ( is_array( $hc_mock_options ) && array_key_exists( $option, $hc_mock_options ) ) {
-			return $hc_mock_options[ $option ];
+		global $decouplix_mock_options;
+		if ( is_array( $decouplix_mock_options ) && array_key_exists( $option, $decouplix_mock_options ) ) {
+			return $decouplix_mock_options[ $option ];
 		}
 		return $default;
 	}
 }
 if ( ! function_exists( 'update_option' ) ) {
 	function update_option( $option, $value, $autoload = null ) {
-		global $hc_mock_options;
-		if ( ! is_array( $hc_mock_options ) ) {
-			$hc_mock_options = array();
+		global $decouplix_mock_options;
+		if ( ! is_array( $decouplix_mock_options ) ) {
+			$decouplix_mock_options = array();
 		}
-		$hc_mock_options[ $option ] = $value;
+		$decouplix_mock_options[ $option ] = $value;
 		return true;
 	}
 }
@@ -114,8 +114,8 @@ if ( ! function_exists( 'register_rest_route' ) ) {
 
 if ( ! function_exists( 'current_user_can' ) ) {
 	function current_user_can( $capability ) {
-		global $hc_current_user_can_result;
-		return isset( $hc_current_user_can_result ) ? $hc_current_user_can_result : true;
+		global $decouplix_current_user_can_result;
+		return isset( $decouplix_current_user_can_result ) ? $decouplix_current_user_can_result : true;
 	}
 }
 
@@ -208,11 +208,11 @@ if ( ! class_exists( 'WP_Error' ) ) {
 
 if ( ! function_exists( 'do_action' ) ) {
 	function do_action( $tag, ...$arg ) {
-		global $hc_fired_actions;
-		if ( ! is_array( $hc_fired_actions ) ) {
-			$hc_fired_actions = array();
+		global $decouplix_fired_actions;
+		if ( ! is_array( $decouplix_fired_actions ) ) {
+			$decouplix_fired_actions = array();
 		}
-		$hc_fired_actions[] = array(
+		$decouplix_fired_actions[] = array(
 			'tag'  => $tag,
 			'args' => $arg,
 		);
@@ -227,9 +227,9 @@ if ( ! function_exists( 'apply_filters' ) ) {
 
 if ( ! function_exists( 'get_post_type_object' ) ) {
 	function get_post_type_object( $post_type ) {
-		global $hc_mock_post_type_public;
+		global $decouplix_mock_post_type_public;
 		$obj = new \stdClass();
-		$obj->public = isset( $hc_mock_post_type_public ) ? $hc_mock_post_type_public : true;
+		$obj->public = isset( $decouplix_mock_post_type_public ) ? $decouplix_mock_post_type_public : true;
 		return $obj;
 	}
 }
@@ -259,8 +259,8 @@ if ( ! function_exists( 'wp_json_encode' ) ) {
 
 if ( ! function_exists( 'wp_remote_post' ) ) {
 	function wp_remote_post( $url, $args = array() ) {
-		global $hc_mock_remote_post_result;
-		return isset( $hc_mock_remote_post_result ) ? $hc_mock_remote_post_result : array( 'response' => array( 'code' => 200 ) );
+		global $decouplix_mock_remote_post_result;
+		return isset( $decouplix_mock_remote_post_result ) ? $decouplix_mock_remote_post_result : array( 'response' => array( 'code' => 200 ) );
 	}
 }
 
@@ -278,11 +278,11 @@ if ( ! function_exists( 'wp_remote_retrieve_response_code' ) ) {
 
 if ( ! function_exists( 'wp_schedule_single_event' ) ) {
 	function wp_schedule_single_event( $timestamp, $hook, $args = array(), $wp_error = false ) {
-		global $hc_scheduled_events;
-		if ( ! is_array( $hc_scheduled_events ) ) {
-			$hc_scheduled_events = array();
+		global $decouplix_scheduled_events;
+		if ( ! is_array( $decouplix_scheduled_events ) ) {
+			$decouplix_scheduled_events = array();
 		}
-		$hc_scheduled_events[] = array(
+		$decouplix_scheduled_events[] = array(
 			'timestamp' => $timestamp,
 			'hook'      => $hook,
 			'args'      => $args,
@@ -293,11 +293,11 @@ if ( ! function_exists( 'wp_schedule_single_event' ) ) {
 
 if ( ! function_exists( 'as_enqueue_async_action' ) ) {
 	function as_enqueue_async_action( $hook, $args = array(), $group = '' ) {
-		global $hc_action_scheduler_events;
-		if ( ! is_array( $hc_action_scheduler_events ) ) {
-			$hc_action_scheduler_events = array();
+		global $decouplix_action_scheduler_events;
+		if ( ! is_array( $decouplix_action_scheduler_events ) ) {
+			$decouplix_action_scheduler_events = array();
 		}
-		$hc_action_scheduler_events[] = array(
+		$decouplix_action_scheduler_events[] = array(
 			'hook'  => $hook,
 			'args'  => $args,
 			'group' => $group,
@@ -318,15 +318,15 @@ if ( ! function_exists( 'wp_make_link_relative' ) ) {
 
 if ( ! function_exists( 'get_object_taxonomies' ) ) {
 	function get_object_taxonomies( $post_type ) {
-		global $hc_mock_taxonomies;
-		return isset( $hc_mock_taxonomies ) ? $hc_mock_taxonomies : array( 'category', 'post_tag' );
+		global $decouplix_mock_taxonomies;
+		return isset( $decouplix_mock_taxonomies ) ? $decouplix_mock_taxonomies : array( 'category', 'post_tag' );
 	}
 }
 
 if ( ! function_exists( 'get_the_terms' ) ) {
 	function get_the_terms( $post_id, $taxonomy ) {
-		global $hc_mock_terms;
-		return isset( $hc_mock_terms ) ? $hc_mock_terms : array();
+		global $decouplix_mock_terms;
+		return isset( $decouplix_mock_terms ) ? $decouplix_mock_terms : array();
 	}
 }
 
@@ -356,9 +356,9 @@ if ( ! function_exists( 'add_query_arg' ) ) {
 
 if ( ! function_exists( 'get_users' ) ) {
 	function get_users( $args = array() ) {
-		global $hc_mock_users;
-		if ( isset( $hc_mock_users ) ) {
-			return $hc_mock_users;
+		global $decouplix_mock_users;
+		if ( isset( $decouplix_mock_users ) ) {
+			return $decouplix_mock_users;
 		}
 		$admin     = new \stdClass();
 		$admin->ID = 1;
@@ -368,9 +368,9 @@ if ( ! function_exists( 'get_users' ) ) {
 
 if ( ! function_exists( 'get_post' ) ) {
 	function get_post( $post_id ) {
-		global $hc_mock_posts;
-		if ( is_array( $hc_mock_posts ) && isset( $hc_mock_posts[ $post_id ] ) ) {
-			return $hc_mock_posts[ $post_id ];
+		global $decouplix_mock_posts;
+		if ( is_array( $decouplix_mock_posts ) && isset( $decouplix_mock_posts[ $post_id ] ) ) {
+			return $decouplix_mock_posts[ $post_id ];
 		}
 		return null;
 	}
@@ -378,11 +378,11 @@ if ( ! function_exists( 'get_post' ) ) {
 
 if ( ! function_exists( 'register_graphql_field' ) ) {
 	function register_graphql_field( $type_name, $field_name, $config = array() ) {
-		global $hc_registered_graphql_fields;
-		if ( ! is_array( $hc_registered_graphql_fields ) ) {
-			$hc_registered_graphql_fields = array();
+		global $decouplix_registered_graphql_fields;
+		if ( ! is_array( $decouplix_registered_graphql_fields ) ) {
+			$decouplix_registered_graphql_fields = array();
 		}
-		$hc_registered_graphql_fields[] = array(
+		$decouplix_registered_graphql_fields[] = array(
 			'type_name'  => $type_name,
 			'field_name' => $field_name,
 			'config'     => $config,

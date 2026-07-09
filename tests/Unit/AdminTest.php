@@ -24,8 +24,8 @@ class AdminTest extends TestCase {
 	 */
 	protected function setUp(): void {
 		parent::setUp();
-		global $hc_registered_actions;
-		$hc_registered_actions = array();
+		global $decouplix_registered_actions;
+		$decouplix_registered_actions = array();
 
 		// Reset singleton instance for Admin.
 		$ref  = new \ReflectionClass( Admin::class );
@@ -42,13 +42,13 @@ class AdminTest extends TestCase {
 		$instance = Admin::get_instance();
 		$this->assertInstanceOf( Admin::class, $instance );
 
-		global $hc_registered_actions;
+		global $decouplix_registered_actions;
 
 		// Verify action hooks were registered.
 		$admin_menu_registered            = false;
 		$admin_enqueue_scripts_registered = false;
 
-		foreach ( $hc_registered_actions as $action ) {
+		foreach ( $decouplix_registered_actions as $action ) {
 			if ( 'admin_menu' === $action['hook'] ) {
 				$admin_menu_registered = true;
 				$this->assertEquals( array( $instance, 'register_settings_page' ), $action['callback'] );

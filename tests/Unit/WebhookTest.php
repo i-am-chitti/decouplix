@@ -25,10 +25,10 @@ class WebhookTest extends TestCase {
 	 */
 	protected function setUp(): void {
 		parent::setUp();
-		global $hc_registered_actions, $hc_fired_actions, $hc_mock_post_type_public;
-		$hc_registered_actions    = array();
-		$hc_fired_actions         = array();
-		$hc_mock_post_type_public = true;
+		global $decouplix_registered_actions, $decouplix_fired_actions, $decouplix_mock_post_type_public;
+		$decouplix_registered_actions    = array();
+		$decouplix_fired_actions         = array();
+		$decouplix_mock_post_type_public = true;
 
 		// Reset singleton instance for Webhook.
 		$ref  = new \ReflectionClass( Webhook::class );
@@ -45,10 +45,10 @@ class WebhookTest extends TestCase {
 		$instance = Webhook::get_instance();
 		$this->assertInstanceOf( Webhook::class, $instance );
 
-		global $hc_registered_actions;
+		global $decouplix_registered_actions;
 		$transition_hook_registered = false;
 
-		foreach ( $hc_registered_actions as $action ) {
+		foreach ( $decouplix_registered_actions as $action ) {
 			if ( 'transition_post_status' === $action['hook'] ) {
 				$transition_hook_registered = true;
 				$this->assertEquals( array( $instance, 'handle_post_transition' ), $action['callback'] );
@@ -75,11 +75,11 @@ class WebhookTest extends TestCase {
 
 		$instance->handle_post_transition( 'publish', 'draft', $post );
 
-		global $hc_fired_actions;
-		$this->assertCount( 1, $hc_fired_actions );
-		$this->assertEquals( 'decouplix_webhook_triggered', $hc_fired_actions[0]['tag'] );
+		global $decouplix_fired_actions;
+		$this->assertCount( 1, $decouplix_fired_actions );
+		$this->assertEquals( 'decouplix_webhook_triggered', $decouplix_fired_actions[0]['tag'] );
 
-		$payload = $hc_fired_actions[0]['args'][0];
+		$payload = $decouplix_fired_actions[0]['args'][0];
 		$this->assertEquals( 'post_publish', $payload['event'] );
 		$this->assertEquals( 123, $payload['post_id'] );
 		$this->assertEquals( 'Test Post', $payload['title'] );
@@ -104,9 +104,9 @@ class WebhookTest extends TestCase {
 
 		$instance->handle_post_transition( 'publish', 'publish', $post );
 
-		global $hc_fired_actions;
-		$this->assertCount( 1, $hc_fired_actions );
-		$payload = $hc_fired_actions[0]['args'][0];
+		global $decouplix_fired_actions;
+		$this->assertCount( 1, $decouplix_fired_actions );
+		$payload = $decouplix_fired_actions[0]['args'][0];
 		$this->assertEquals( 'post_update', $payload['event'] );
 		$this->assertEquals( 'Updated Post', $payload['title'] );
 	}
@@ -125,9 +125,9 @@ class WebhookTest extends TestCase {
 
 		$instance->handle_post_transition( 'draft', 'publish', $post );
 
-		global $hc_fired_actions;
-		$this->assertCount( 1, $hc_fired_actions );
-		$payload = $hc_fired_actions[0]['args'][0];
+		global $decouplix_fired_actions;
+		$this->assertCount( 1, $decouplix_fired_actions );
+		$payload = $decouplix_fired_actions[0]['args'][0];
 		$this->assertEquals( 'post_unpublish', $payload['event'] );
 		$this->assertEquals( 'draft', $payload['status'] );
 		$this->assertEquals( 'publish', $payload['old_status'] );
@@ -147,8 +147,8 @@ class WebhookTest extends TestCase {
 
 		$instance->handle_post_transition( 'pending', 'draft', $post );
 
-		global $hc_fired_actions;
-		$this->assertCount( 0, $hc_fired_actions );
+		global $decouplix_fired_actions;
+		$this->assertCount( 0, $decouplix_fired_actions );
 	}
 
 	/**
@@ -159,8 +159,8 @@ class WebhookTest extends TestCase {
 	public function test_transition_non_public_post_type() {
 		$instance = Webhook::get_instance();
 
-		global $hc_mock_post_type_public;
-		$hc_mock_post_type_public = false;
+		global $decouplix_mock_post_type_public;
+		$decouplix_mock_post_type_public = false;
 
 		$post            = new WP_Post();
 		$post->ID        = 123;
@@ -168,8 +168,8 @@ class WebhookTest extends TestCase {
 
 		$instance->handle_post_transition( 'publish', 'draft', $post );
 
-		global $hc_fired_actions;
-		$this->assertCount( 0, $hc_fired_actions );
+		global $decouplix_fired_actions;
+		$this->assertCount( 0, $decouplix_fired_actions );
 	}
 
 	/**
@@ -186,7 +186,7 @@ class WebhookTest extends TestCase {
 
 		$instance->handle_post_transition( 'publish', 'draft', $post );
 
-		global $hc_fired_actions;
-		$this->assertCount( 0, $hc_fired_actions );
+		global $decouplix_fired_actions;
+		$this->assertCount( 0, $decouplix_fired_actions );
 	}
 }

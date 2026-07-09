@@ -67,9 +67,9 @@ class Plugin {
 	 * @return void
 	 */
 	public static function activate() {
-		if ( false === get_option( 'hc_settings' ) ) {
+		if ( false === get_option( 'decouplix_settings' ) ) {
 			update_option(
-				'hc_settings',
+				'decouplix_settings',
 				array(
 					'frontend_url'    => '',
 					'webhook_url'     => '',

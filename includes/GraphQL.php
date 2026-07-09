@@ -52,20 +52,20 @@ class GraphQL {
 	public function authenticate_preview_request( $user_id ) {
 		// Only override authentication on GraphQL HTTP requests where our custom secret header is present.
 		$is_graphql_request = defined( 'GRAPHQL_HTTP_REQUEST' ) && GRAPHQL_HTTP_REQUEST;
-		$has_secret_header  = isset( $_SERVER['HTTP_X_HC_SECRET'] ) && ! empty( $_SERVER['HTTP_X_HC_SECRET'] );
+		$has_secret_header  = isset( $_SERVER['HTTP_X_DECOUPLIX_SECRET'] ) && ! empty( $_SERVER['HTTP_X_DECOUPLIX_SECRET'] );
 
 		if ( ! $is_graphql_request || ! $has_secret_header ) {
 			return $user_id;
 		}
 
-		$settings = get_option( 'hc_settings', array() );
+		$settings = get_option( 'decouplix_settings', array() );
 		$secret   = isset( $settings['webhook_secret'] ) ? $settings['webhook_secret'] : '';
 
 		if ( empty( $secret ) ) {
 			return $user_id;
 		}
 
-		$request_secret = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_HC_SECRET'] ) );
+		$request_secret = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_DECOUPLIX_SECRET'] ) );
 
 		if ( ! hash_equals( $secret, $request_secret ) ) {
 			return $user_id;

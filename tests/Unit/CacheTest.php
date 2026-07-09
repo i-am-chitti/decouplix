@@ -25,14 +25,14 @@ class CacheTest extends TestCase {
 	 */
 	protected function setUp(): void {
 		parent::setUp();
-		global $hc_registered_actions, $hc_action_scheduler_events, $hc_scheduled_events, $hc_mock_options, $hc_mock_terms, $hc_mock_taxonomies, $hc_mock_post_type_public;
-		$hc_registered_actions      = array();
-		$hc_action_scheduler_events = array();
-		$hc_scheduled_events        = array();
-		$hc_mock_options            = array();
-		$hc_mock_terms              = array();
-		$hc_mock_taxonomies         = array( 'category', 'post_tag' );
-		$hc_mock_post_type_public   = true;
+		global $decouplix_registered_actions, $decouplix_action_scheduler_events, $decouplix_scheduled_events, $decouplix_mock_options, $decouplix_mock_terms, $decouplix_mock_taxonomies, $decouplix_mock_post_type_public;
+		$decouplix_registered_actions      = array();
+		$decouplix_action_scheduler_events = array();
+		$decouplix_scheduled_events        = array();
+		$decouplix_mock_options            = array();
+		$decouplix_mock_terms              = array();
+		$decouplix_mock_taxonomies         = array( 'category', 'post_tag' );
+		$decouplix_mock_post_type_public   = true;
 
 		// Reset singleton instance for Cache.
 		$ref  = new \ReflectionClass( Cache::class );
@@ -49,13 +49,13 @@ class CacheTest extends TestCase {
 		$instance = Cache::get_instance();
 		$this->assertInstanceOf( Cache::class, $instance );
 
-		global $hc_registered_actions;
+		global $decouplix_registered_actions;
 
 		$transition_registered  = false;
 		$purge_async_registered = false;
 		$purge_cron_registered  = false;
 
-		foreach ( $hc_registered_actions as $action ) {
+		foreach ( $decouplix_registered_actions as $action ) {
 			if ( 'transition_post_status' === $action['hook'] ) {
 				$transition_registered = true;
 				$this->assertEquals( array( $instance, 'handle_post_purge' ), $action['callback'] );
@@ -88,7 +88,7 @@ class CacheTest extends TestCase {
 		$post->post_type = 'post';
 
 		// Set mock terms for taxonomy category and tag
-		global $hc_mock_terms;
+		global $decouplix_mock_terms;
 		$term1           = new \stdClass();
 		$term1->slug     = 'news';
 		$term1->taxonomy = 'category';
@@ -97,7 +97,7 @@ class CacheTest extends TestCase {
 		$term2->slug     = 'featured';
 		$term2->taxonomy = 'post_tag';
 
-		$hc_mock_terms = array( $term1, $term2 );
+		$decouplix_mock_terms = array( $term1, $term2 );
 
 		$paths = $instance->gather_paths( $post );
 
@@ -126,11 +126,11 @@ class CacheTest extends TestCase {
 
 		$instance->handle_post_purge( 'publish', 'draft', $post );
 
-		global $hc_action_scheduler_events;
-		$this->assertCount( 1, $hc_action_scheduler_events );
-		$this->assertEquals( 'decouplix_purge_paths_async', $hc_action_scheduler_events[0]['hook'] );
+		global $decouplix_action_scheduler_events;
+		$this->assertCount( 1, $decouplix_action_scheduler_events );
+		$this->assertEquals( 'decouplix_purge_paths_async', $decouplix_action_scheduler_events[0]['hook'] );
 
-		$paths = $hc_action_scheduler_events[0]['args'][0];
+		$paths = $decouplix_action_scheduler_events[0]['args'][0];
 		$this->assertContains( '/?p=789', $paths );
 		$this->assertContains( '/', $paths );
 	}
@@ -143,21 +143,21 @@ class CacheTest extends TestCase {
 	public function test_purge_paths_dispatch() {
 		$instance = Cache::get_instance();
 
-		global $hc_mock_options;
-		$hc_mock_options['hc_settings'] = array(
+		global $decouplix_mock_options;
+		$decouplix_mock_options['decouplix_settings'] = array(
 			'cache_endpoints' => "https://frontend.com/api/revalidate-1\nhttps://frontend.com/api/revalidate-2",
 			'webhook_secret'  => 'secret',
 		);
 
-		global $hc_fired_actions;
-		$hc_fired_actions = array();
+		global $decouplix_fired_actions;
+		$decouplix_fired_actions = array();
 
 		$paths = array( '/', '/about' );
 		$instance->purge_paths( $paths );
 
 		// Verify actions fired (one for each endpoint)
 		$delivered_events = array();
-		foreach ( $hc_fired_actions as $action ) {
+		foreach ( $decouplix_fired_actions as $action ) {
 			if ( 'decouplix_cache_purged' === $action['tag'] ) {
 				$delivered_events[] = $action['args'];
 			}

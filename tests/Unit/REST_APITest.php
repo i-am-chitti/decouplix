@@ -26,11 +26,11 @@ class REST_APITest extends TestCase {
 	 */
 	protected function setUp(): void {
 		parent::setUp();
-		global $hc_registered_actions, $hc_registered_routes, $hc_current_user_can_result, $hc_mock_options;
-		$hc_registered_actions    = array();
+		global $decouplix_registered_actions, $hc_registered_routes, $decouplix_current_user_can_result, $decouplix_mock_options;
+		$decouplix_registered_actions    = array();
 		$hc_registered_routes     = array();
-		$hc_current_user_can_result = true;
-		$hc_mock_options          = array();
+		$decouplix_current_user_can_result = true;
+		$decouplix_mock_options          = array();
 
 		// Reset singleton instance for REST_API.
 		$ref  = new \ReflectionClass( REST_API::class );
@@ -47,10 +47,10 @@ class REST_APITest extends TestCase {
 		$instance = REST_API::get_instance();
 		$this->assertInstanceOf( REST_API::class, $instance );
 
-		global $hc_registered_actions;
+		global $decouplix_registered_actions;
 		$rest_init_registered = false;
 
-		foreach ( $hc_registered_actions as $action ) {
+		foreach ( $decouplix_registered_actions as $action ) {
 			if ( 'rest_api_init' === $action['hook'] ) {
 				$rest_init_registered = true;
 				$this->assertEquals( array( $instance, 'register_routes' ), $action['callback'] );
@@ -90,12 +90,12 @@ class REST_APITest extends TestCase {
 	public function test_check_permission() {
 		$instance = REST_API::get_instance();
 
-		global $hc_current_user_can_result;
+		global $decouplix_current_user_can_result;
 
-		$hc_current_user_can_result = true;
+		$decouplix_current_user_can_result = true;
 		$this->assertTrue( $instance->check_permission() );
 
-		$hc_current_user_can_result = false;
+		$decouplix_current_user_can_result = false;
 		$this->assertFalse( $instance->check_permission() );
 	}
 
@@ -129,8 +129,8 @@ class REST_APITest extends TestCase {
 		$request  = new WP_REST_Request( 'GET', '/settings' );
 
 		// Prepare mock database option
-		global $hc_mock_options;
-		$hc_mock_options['hc_settings'] = array(
+		global $decouplix_mock_options;
+		$decouplix_mock_options['decouplix_settings'] = array(
 			'frontend_url'    => 'https://frontend.com',
 			'webhook_secret'  => 'supersecret',
 			'cache_endpoints' => "https://frontend.com/api/revalidate\nhttps://cdn.com/purge",
@@ -166,9 +166,9 @@ class REST_APITest extends TestCase {
 		$this->assertEquals( 'https://new-frontend.com', $data['data']['frontend_url'] );
 
 		// Verify database was updated
-		global $hc_mock_options;
-		$this->assertEquals( 'https://new-frontend.com', $hc_mock_options['hc_settings']['frontend_url'] );
-		$this->assertEquals( 'newsecret', $hc_mock_options['hc_settings']['webhook_secret'] );
-		$this->assertEquals( 'https://new-frontend.com/purge', $hc_mock_options['hc_settings']['cache_endpoints'] );
+		global $decouplix_mock_options;
+		$this->assertEquals( 'https://new-frontend.com', $decouplix_mock_options['decouplix_settings']['frontend_url'] );
+		$this->assertEquals( 'newsecret', $decouplix_mock_options['decouplix_settings']['webhook_secret'] );
+		$this->assertEquals( 'https://new-frontend.com/purge', $decouplix_mock_options['decouplix_settings']['cache_endpoints'] );
 	}
 }

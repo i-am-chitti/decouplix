@@ -61,7 +61,7 @@ class CLI {
 	 * @when after_wp_load
 	 */
 	public function status( $args, $assoc_args ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
-		$settings    = get_option( 'hc_settings', array() );
+		$settings    = get_option( 'decouplix_settings', array() );
 		$url         = isset( $settings['frontend_url'] ) ? $settings['frontend_url'] : '';
 		$webhook_url = isset( $settings['webhook_url'] ) ? $settings['webhook_url'] : '';
 		$secret      = isset( $settings['webhook_secret'] ) ? $settings['webhook_secret'] : '';

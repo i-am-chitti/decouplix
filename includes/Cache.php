@@ -152,7 +152,7 @@ class Cache {
 	 * @return void
 	 */
 	public function purge_paths( $paths ) {
-		$settings         = get_option( 'hc_settings', array() );
+		$settings         = get_option( 'decouplix_settings', array() );
 		$endpoints_string = isset( $settings['cache_endpoints'] ) ? $settings['cache_endpoints'] : '';
 		$secret           = isset( $settings['webhook_secret'] ) ? $settings['webhook_secret'] : '';
 

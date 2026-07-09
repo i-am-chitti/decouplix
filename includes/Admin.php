@@ -68,7 +68,7 @@ class Admin {
 	public function render_settings_page() {
 		?>
 		<div class="wrap">
-			<div id="hc-settings-root"></div>
+			<div id="decouplix-settings-root"></div>
 		</div>
 		<?php
 	}
@@ -86,17 +86,17 @@ class Admin {
 		}
 
 		// Path to compiled scripts.
-		$script_path = HC_PLUGIN_DIR . 'build/admin.js';
-		$style_path  = HC_PLUGIN_DIR . 'build/admin.css';
+		$script_path = DECOUPLIX_PLUGIN_DIR . 'build/admin.js';
+		$style_path  = DECOUPLIX_PLUGIN_DIR . 'build/admin.css';
 
 		// Register and enqueue JS/CSS if they exist.
-		$js_url  = file_exists( $script_path ) ? HC_PLUGIN_URL . 'build/admin.js' : '';
-		$css_url = file_exists( $style_path ) ? HC_PLUGIN_URL . 'build/admin.css' : '';
+		$js_url  = file_exists( $script_path ) ? DECOUPLIX_PLUGIN_URL . 'build/admin.js' : '';
+		$css_url = file_exists( $style_path ) ? DECOUPLIX_PLUGIN_URL . 'build/admin.css' : '';
 
 		if ( ! empty( $js_url ) ) {
-			$asset_file   = HC_PLUGIN_DIR . 'build/admin.asset.php';
+			$asset_file   = DECOUPLIX_PLUGIN_DIR . 'build/admin.asset.php';
 			$dependencies = array( 'wp-element', 'wp-components', 'wp-api-fetch', 'wp-i18n' );
-			$version      = HC_VERSION;
+			$version      = DECOUPLIX_VERSION;
 
 			if ( file_exists( $asset_file ) ) {
 				$asset        = include $asset_file;
@@ -105,7 +105,7 @@ class Admin {
 			}
 
 			wp_enqueue_script(
-				'hc-admin-js',
+				'decouplix-admin-js',
 				$js_url,
 				$dependencies,
 				$version,
@@ -114,8 +114,8 @@ class Admin {
 
 			// Localize script with REST API settings and security nonce.
 			wp_localize_script(
-				'hc-admin-js',
-				'hcSettings',
+				'decouplix-admin-js',
+				'decouplixSettings',
 				array(
 					'root'  => esc_url_raw( rest_url() ),
 					'nonce' => wp_create_nonce( 'wp_rest' ),
@@ -125,10 +125,10 @@ class Admin {
 
 		if ( ! empty( $css_url ) ) {
 			wp_enqueue_style(
-				'hc-admin-css',
+				'decouplix-admin-css',
 				$css_url,
 				array( 'wp-components' ),
-				HC_VERSION
+				DECOUPLIX_VERSION
 			);
 		}
 	}

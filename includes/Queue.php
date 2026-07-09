@@ -69,7 +69,7 @@ class Queue {
 	 * @return bool|\WP_Error True on success, WP_Error or false on failure.
 	 */
 	public function deliver_webhook( $payload ) {
-		$settings = get_option( 'hc_settings', array() );
+		$settings = get_option( 'decouplix_settings', array() );
 		$url      = isset( $settings['webhook_url'] ) ? $settings['webhook_url'] : '';
 		$secret   = isset( $settings['webhook_secret'] ) ? $settings['webhook_secret'] : '';
 
@@ -114,7 +114,7 @@ class Queue {
 		$status_code = wp_remote_retrieve_response_code( $response );
 		if ( $status_code < 200 || $status_code >= 300 ) {
 			return new \WP_Error(
-				'hc_webhook_http_error',
+				'decouplix_webhook_http_error',
 				sprintf( 'Webhook delivery failed with HTTP status code %d', $status_code )
 			);
 		}

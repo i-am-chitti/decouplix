@@ -10,9 +10,13 @@ import {
 import apiFetch from '@wordpress/api-fetch';
 
 // Configure apiFetch middleware with the localized WordPress REST parameters.
-if ( window.hcSettings ) {
-	apiFetch.use( apiFetch.createNonceMiddleware( window.hcSettings.nonce ) );
-	apiFetch.use( apiFetch.createRootURLMiddleware( window.hcSettings.root ) );
+if ( window.decouplixSettings ) {
+	apiFetch.use(
+		apiFetch.createNonceMiddleware( window.decouplixSettings.nonce )
+	);
+	apiFetch.use(
+		apiFetch.createRootURLMiddleware( window.decouplixSettings.root )
+	);
 }
 
 import './admin.css';
@@ -101,7 +105,7 @@ const App = () => {
 	if ( isLoading ) {
 		return (
 			<div
-				className="hc-loading-container"
+				className="decouplix-loading-container"
 				style={ { padding: '40px 0', textAlign: 'left' } }
 			>
 				<Spinner />
@@ -114,7 +118,7 @@ const App = () => {
 
 	return (
 		<div
-			className="hc-settings-wrap"
+			className="decouplix-settings-wrap"
 			style={ { maxWidth: '800px', margin: '20px 0' } }
 		>
 			<h2>Decouplix Settings</h2>
@@ -136,7 +140,7 @@ const App = () => {
 
 			<form onSubmit={ handleSave } style={ { marginTop: '20px' } }>
 				<PanelBody title="General Configuration" initialOpen={ true }>
-					<div className="hc-form-row">
+					<div className="decouplix-form-row">
 						<TextControl
 							label="Front-end URL"
 							help="The base URL of your decoupled frontend site, e.g. https://my-site.com. Used for frontend preview redirection and relative URL mapping."
@@ -152,7 +156,7 @@ const App = () => {
 						/>
 					</div>
 
-					<div className="hc-form-row">
+					<div className="decouplix-form-row">
 						<TextControl
 							label="Webhook URL"
 							help="The custom URL where event webhooks should be sent, e.g., a Vercel Deploy Hook, Zapier, or a custom Next.js webhook path. Leave empty to disable."
@@ -168,17 +172,17 @@ const App = () => {
 						/>
 					</div>
 
-					<div className="hc-form-row">
+					<div className="decouplix-form-row">
 						<label
 							className="components-base-control__label"
-							htmlFor="hc-webhook-secret"
+							htmlFor="decouplix-webhook-secret"
 						>
 							Webhook Secret
 						</label>
-						<div className="hc-webhook-row-container">
-							<div className="hc-webhook-input-wrapper">
+						<div className="decouplix-webhook-row-container">
+							<div className="decouplix-webhook-input-wrapper">
 								<TextControl
-									id="hc-webhook-secret"
+									id="decouplix-webhook-secret"
 									value={ settings.webhook_secret }
 									onChange={ ( val ) =>
 										setSettings( {
@@ -201,7 +205,7 @@ const App = () => {
 						</p>
 					</div>
 
-					<div className="hc-form-row">
+					<div className="decouplix-form-row">
 						<TextareaControl
 							label="Cache Revalidation Endpoints"
 							help="Enter your frontend cache purge / revalidation endpoints (one per line). These will receive POST requests containing modified paths."
@@ -230,7 +234,7 @@ const App = () => {
 
 // Wait for DOM to be fully loaded before rendering.
 document.addEventListener( 'DOMContentLoaded', () => {
-	const rootElement = document.getElementById( 'hc-settings-root' );
+	const rootElement = document.getElementById( 'decouplix-settings-root' );
 	if ( rootElement ) {
 		const root = createRoot( rootElement );
 		root.render( <App /> );

@@ -144,7 +144,7 @@ class REST_API {
 	 * @return WP_REST_Response
 	 */
 	public function get_settings( $request ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
-		$settings = get_option( 'hc_settings', array() );
+		$settings = get_option( 'decouplix_settings', array() );
 
 		$defaults = array(
 			'frontend_url'    => '',
@@ -165,7 +165,7 @@ class REST_API {
 	 * @return WP_REST_Response|WP_Error
 	 */
 	public function update_settings( $request ) {
-		$settings = get_option( 'hc_settings', array() );
+		$settings = get_option( 'decouplix_settings', array() );
 
 		if ( $request->has_param( 'frontend_url' ) ) {
 			$settings['frontend_url'] = $request->get_param( 'frontend_url' );
@@ -180,10 +180,10 @@ class REST_API {
 			$settings['cache_endpoints'] = $request->get_param( 'cache_endpoints' );
 		}
 
-		$updated = update_option( 'hc_settings', $settings );
+		$updated = update_option( 'decouplix_settings', $settings );
 
 		if ( ! $updated ) {
-			$current = get_option( 'hc_settings', array() );
+			$current = get_option( 'decouplix_settings', array() );
 			if ( $current !== $settings ) {
 				return new WP_Error(
 					'rest_save_failed',

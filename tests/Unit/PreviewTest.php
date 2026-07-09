@@ -25,9 +25,9 @@ class PreviewTest extends TestCase {
 	 */
 	protected function setUp(): void {
 		parent::setUp();
-		global $hc_registered_actions, $hc_mock_options;
-		$hc_registered_actions = array();
-		$hc_mock_options       = array();
+		global $decouplix_registered_actions, $decouplix_mock_options;
+		$decouplix_registered_actions = array();
+		$decouplix_mock_options       = array();
 
 		// Reset singleton instance for Preview.
 		$ref  = new \ReflectionClass( Preview::class );
@@ -44,10 +44,10 @@ class PreviewTest extends TestCase {
 		$instance = Preview::get_instance();
 		$this->assertInstanceOf( Preview::class, $instance );
 
-		global $hc_registered_actions;
+		global $decouplix_registered_actions;
 		$preview_filter_registered = false;
 
-		foreach ( $hc_registered_actions as $action ) {
+		foreach ( $decouplix_registered_actions as $action ) {
 			if ( 'preview_post_link' === $action['hook'] ) {
 				$preview_filter_registered = true;
 				$this->assertEquals( array( $instance, 'filter_preview_link' ), $action['callback'] );
@@ -65,8 +65,8 @@ class PreviewTest extends TestCase {
 	public function test_filter_preview_link_success() {
 		$instance = Preview::get_instance();
 
-		global $hc_mock_options;
-		$hc_mock_options['hc_settings'] = array(
+		global $decouplix_mock_options;
+		$decouplix_mock_options['decouplix_settings'] = array(
 			'frontend_url'   => 'https://frontend-preview.com',
 			'webhook_secret' => 'previewsecret123',
 		);
@@ -93,8 +93,8 @@ class PreviewTest extends TestCase {
 	public function test_filter_preview_link_empty_url() {
 		$instance = Preview::get_instance();
 
-		global $hc_mock_options;
-		$hc_mock_options['hc_settings'] = array(
+		global $decouplix_mock_options;
+		$decouplix_mock_options['decouplix_settings'] = array(
 			'frontend_url'   => '',
 			'webhook_secret' => 'previewsecret123',
 		);

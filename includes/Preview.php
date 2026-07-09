@@ -57,7 +57,7 @@ class Preview {
 			return $preview_link;
 		}
 
-		$settings     = get_option( 'hc_settings', array() );
+		$settings     = get_option( 'decouplix_settings', array() );
 		$frontend_url = isset( $settings['frontend_url'] ) ? $settings['frontend_url'] : '';
 		$secret       = isset( $settings['webhook_secret'] ) ? $settings['webhook_secret'] : '';
 
@@ -90,9 +90,9 @@ class Preview {
 
 		$request_secret = '';
 
-		// 1. Check HTTP Header 'X-HC-Secret'
-		if ( isset( $_SERVER['HTTP_X_HC_SECRET'] ) && ! empty( $_SERVER['HTTP_X_HC_SECRET'] ) ) {
-			$request_secret = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_HC_SECRET'] ) );
+		// 1. Check HTTP Header 'X-Decouplix-Secret'
+		if ( isset( $_SERVER['HTTP_X_DECOUPLIX_SECRET'] ) && ! empty( $_SERVER['HTTP_X_DECOUPLIX_SECRET'] ) ) {
+			$request_secret = sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_DECOUPLIX_SECRET'] ) );
 		} elseif ( isset( $_SERVER['HTTP_AUTHORIZATION'] ) && ! empty( $_SERVER['HTTP_AUTHORIZATION'] ) ) {
 			// 2. Check Authorization Header (Bearer token)
 			$auth_header = sanitize_text_field( wp_unslash( $_SERVER['HTTP_AUTHORIZATION'] ) );
@@ -114,7 +114,7 @@ class Preview {
 			return $user_id;
 		}
 
-		$settings = get_option( 'hc_settings', array() );
+		$settings = get_option( 'decouplix_settings', array() );
 		$secret   = isset( $settings['webhook_secret'] ) ? $settings['webhook_secret'] : '';
 
 		if ( empty( $secret ) || ! hash_equals( $secret, $request_secret ) ) {

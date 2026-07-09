@@ -26,11 +26,11 @@ class CLITest extends TestCase {
 	 */
 	protected function setUp(): void {
 		parent::setUp();
-		global $hc_registered_actions, $hc_mock_options, $hc_mock_posts, $hc_action_scheduler_events;
-		$hc_registered_actions      = array();
-		$hc_mock_options            = array();
-		$hc_mock_posts              = array();
-		$hc_action_scheduler_events = array();
+		global $decouplix_registered_actions, $decouplix_mock_options, $decouplix_mock_posts, $decouplix_action_scheduler_events;
+		$decouplix_registered_actions      = array();
+		$decouplix_mock_options            = array();
+		$decouplix_mock_posts              = array();
+		$decouplix_action_scheduler_events = array();
 
 		// Clean up WP_CLI mocks
 		WP_CLI::$commands  = array();
@@ -66,8 +66,8 @@ class CLITest extends TestCase {
 	public function test_status_command() {
 		$instance = CLI::get_instance();
 
-		global $hc_mock_options;
-		$hc_mock_options['hc_settings'] = array(
+		global $decouplix_mock_options;
+		$decouplix_mock_options['decouplix_settings'] = array(
 			'frontend_url'    => 'https://my-headless-frontend.com',
 			'webhook_secret'  => 'supersecrettoken',
 			'cache_endpoints' => "https://my-headless-frontend.com/api/revalidate-1\nhttps://my-headless-frontend.com/api/revalidate-2",
@@ -98,8 +98,8 @@ class CLITest extends TestCase {
 		$post->post_name         = 'manual-cli-post';
 		$post->post_modified_gmt = '2026-06-21 02:00:00';
 
-		global $hc_mock_posts;
-		$hc_mock_posts[999] = $post;
+		global $decouplix_mock_posts;
+		$decouplix_mock_posts[999] = $post;
 
 		$instance->webhook_trigger( array( 999 ), array() );
 
@@ -130,10 +130,10 @@ class CLITest extends TestCase {
 
 		$instance->purge( array( '/some-relative-page' ), array() );
 
-		global $hc_action_scheduler_events;
-		$this->assertCount( 1, $hc_action_scheduler_events );
-		$this->assertEquals( 'decouplix_purge_paths_async', $hc_action_scheduler_events[0]['hook'] );
-		$this->assertEquals( array( '/some-relative-page' ), $hc_action_scheduler_events[0]['args'][0] );
+		global $decouplix_action_scheduler_events;
+		$this->assertCount( 1, $decouplix_action_scheduler_events );
+		$this->assertEquals( 'decouplix_purge_paths_async', $decouplix_action_scheduler_events[0]['hook'] );
+		$this->assertEquals( array( '/some-relative-page' ), $decouplix_action_scheduler_events[0]['args'][0] );
 
 		$this->assertContains( 'Cache purge queued successfully.', WP_CLI::$successes );
 	}
